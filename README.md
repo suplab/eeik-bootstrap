@@ -8,7 +8,7 @@ This is **not a runnable application**. It is a configuration and context layer 
 
 ## Repository Structure
 
-This repository follows the [GitHub Copilot Customization Cheat Sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) recommended layout:
+This repository follows the [GitHub Copilot Customization Cheat Sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) and [Claude Code Customization](https://code.claude.com/docs/en/settings) recommended layout:
 
 ```
 .github/

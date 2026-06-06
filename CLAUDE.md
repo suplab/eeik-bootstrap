@@ -2,7 +2,7 @@
 
 ## What This Repository Is
 
-`ghcop_bootstrap` is a **bootstrap and seed repository** — it is not a runnable application. Its purpose is to provide a ready-to-fork configuration base for enterprise projects. Drop the relevant files into any new or existing project to immediately establish:
+`eeik_bootstrap` is a **bootstrap and seed repository** — it is not a runnable application. Its purpose is to provide a ready-to-fork configuration base for enterprise projects. Drop the relevant files into any new or existing project to immediately establish:
 
 - GitHub Copilot workspace instructions (`.github/` directory — already in this repo)
 - Claude Code agent, command, and standards configuration (`.claude/` directory — this layer)
