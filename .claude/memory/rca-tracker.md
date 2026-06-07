@@ -1,58 +1,55 @@
 # RCA Tracker
 
-> Tracks production incidents and their Root Cause Analysis status. Updated by the `incident-handler` and `rca-agent` agents after each incident.
+> Tracks open and resolved incidents. Full post-mortems live in `knowledge/incident-repository/`.
 
 ---
 
-## Active Incidents
+## Open Incidents
 
-<!-- Incidents currently open or in RCA -->
-
-| Incident | Severity | Status | Declared | RCA Due | Owner |
-|----------|---------|--------|----------|---------|-------|
-| None currently active | | | | | |
+| ID | Summary | Severity | Opened | Status | Owner |
+|----|---------|----------|--------|--------|-------|
+| <!-- INC-NNN --> | <!-- summary --> | <!-- P1-P4 --> | | RCA Pending | |
 
 ---
 
-## Completed RCAs
+## Incidents In Progress (RCA Open)
 
-| Incident | Severity | Duration | Root Cause Summary | Corrective Actions | Closed |
-|----------|---------|----------|-------------------|-------------------|--------|
-| None yet | | | | | |
-
----
-
-## Corrective Action Tracker
-
-Track all open corrective actions across all past incidents:
-
-| Ref | Incident | Action | Owner | Due Date | Status |
-|-----|----------|--------|-------|----------|--------|
-| None yet | | | | | |
+| ID | Summary | Severity | RCA Due | Blocking |
+|----|---------|----------|---------|---------|
+| <!-- INC-NNN --> | | | | |
 
 ---
 
-## Incident History
+## Resolved Incidents
 
-<!-- Full incident records are linked here once RCA is complete -->
-
-<!-- Format:
-### INCIDENT-NNN: {Title}
-**Date:** YYYY-MM-DD
-**Severity:** P1/P2/P3
-**Duration:** Xh Ym
-**Services:** {affected services}
-**Root Cause:** {one-line summary}
-**RCA Document:** `docs/rca/INCIDENT-NNN.md`
-**Corrective Actions:** {N} open / {N} closed
--->
+| ID | Summary | Severity | Resolved | RCA Link | Corrective Actions |
+|----|---------|----------|---------|----------|-------------------|
+| [INC-001](../../knowledge/incident-repository/INC-001-outbox-publisher-backlog.md) | Outbox publisher backlog — 2h delay | P2 | 2025-01-22 | ✅ | 3 of 5 done |
 
 ---
 
-## SLA Targets
+## RCA Process
 
-| Severity | Time to Acknowledge | Time to RCA Publication |
-|----------|--------------------|-----------------------|
-| P1 | < 5 minutes | < 48 hours post-resolution |
-| P2 | < 15 minutes | < 72 hours post-resolution |
-| P3 | < 4 hours | < 1 week post-resolution |
+```
+Incident Declared
+    ↓
+Mitigation Applied (≤ 15 min for P1)
+    ↓
+Timeline Reconstructed
+    ↓
+5-Whys Root Cause Analysis
+    ↓
+Corrective Actions Defined (with owners + due dates)
+    ↓
+Post-Mortem Published (knowledge/incident-repository/)
+    ↓
+Corrective Actions Tracked Here
+    ↓
+Close when all corrective actions done
+```
+
+## Commands
+
+- `/rca "symptoms"` — Open RCA workflow
+- `/incident "severity: P1, service: name, symptom: description"` — Declare incident
+- `/capture-incident "summary"` — Capture post-mortem into knowledge repository

@@ -1,0 +1,62 @@
+name: knowledge-capture
+description: "Capture and route knowledge artifacts to the correct repository section"
+
+# This workflow is invoked by multiple commands — the trigger varies
+triggers:
+  - "/create-adr"
+  - "/create-rfc"
+  - "/capture-lesson"
+  - "/capture-incident"
+  - "/memory-update"
+
+steps:
+  - id: classify-input
+    name: "Classify Input Type"
+    agent: architect
+    action: |
+      Determine which extractor to invoke based on the command trigger:
+        /create-adr     → adr-extractor
+        /create-rfc     → adr-extractor (RFC variant)
+        /capture-lesson → lesson-extractor
+        /capture-incident → incident-extractor (+ rca-agent for 5-Whys)
+        /memory-update  → direct memory file update
+    outputs:
+      - extractor: string
+      - target_directory: string
+
+  - id: run-extractor
+    name: "Run Extractor"
+    agent: architect   # overridden by rca-agent for incidents
+    prompt: "generators/knowledge-generator/extractors/{extractor}.md"
+    inputs:
+      - user_input
+    outputs:
+      - extracted_content: object
+      - file_name: string
+
+  - id: write-artifact
+    name: "Write Knowledge Artifact"
+    action: "Write extracted_content to knowledge/{target_directory}/{file_name}"
+    inputs:
+      - extracted_content
+      - file_name
+      - target_directory
+
+  - id: update-index
+    name: "Update Index and Memory"
+    agent: architect
+    action: |
+      Update the relevant index file (README.md) in target_directory.
+      Update .claude/memory/ files if this decision/incident affects project context.
+    inputs:
+      - file_name
+      - extracted_content
+
+  - id: check-promotion
+    name: "Check for Cross-Cutting Promotion"
+    agent: architect
+    action: |
+      Ask: Does this artifact apply beyond this project?
+      If yes for ADRs: suggest contributing to knowledge/adr-repository/ (ADR-G prefix)
+      If yes for patterns: suggest contributing to knowledge/patterns/
+    condition: "extractor in [adr-extractor, pattern-extractor]"

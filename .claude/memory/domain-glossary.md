@@ -1,57 +1,47 @@
 # Domain Glossary
 
 > **Bootstrap Template** — Replace with terms specific to your project's business domain.
-> Keep definitions precise and unambiguous — the same word often means different things in different bounded contexts.
+> Precise definitions prevent Claude Code agents from applying generic meanings to domain-specific vocabulary.
 
 ---
 
 ## How to Use This Glossary
 
-When Claude Code encounters a business term, it checks this glossary for the project-specific definition. This prevents the agent from applying generic or incorrect meanings to domain-specific vocabulary.
+When Claude Code encounters a business term, it checks this glossary first.
 
-When adding a term:
-1. Use the **exact spelling** used in code, database schemas, and stakeholder documents
-2. Note which bounded context owns the term if it varies across contexts
-3. Note what the term explicitly does NOT mean in this domain
+To add terms: `/memory-update "new term: definition"`
 
 ---
 
-## Terms
+## EEIK Platform Terms
 
-<!-- TODO: Replace these examples with your project's actual domain terms -->
+These terms are defined within the EEIK bootstrap context.
 
-### Example Terms (delete and replace)
-
-**Order**
-> A confirmed request by a Customer to purchase one or more Products. An Order is created only after payment authorisation succeeds. An Order is NOT a Basket (which is pre-payment).
-> *Bounded context: Order Management*
-
-**Customer**
-> A registered user who has completed identity verification. A Guest (unregistered shopper) is NOT a Customer in this system.
-> *Bounded context: Identity*
-
-**Fulfilment**
-> The process of picking, packing, and dispatching an Order. Fulfilment begins only after an Order reaches `CONFIRMED` status.
-> *Bounded context: Warehouse*
-
----
-
-## Bounded Context Map
-
-<!-- TODO: List your bounded contexts and their responsibilities -->
-
-| Bounded Context | Responsibility | Owns |
-|----------------|---------------|------|
-| <!-- TODO --> | <!-- brief --> | <!-- entities --> |
+| Term | Definition | NOT to be confused with |
+|------|-----------|------------------------|
+| **Manifest** | The `project-manifest.yaml` file — the source of truth for all EEIK tooling | Not a deployment manifest or Kubernetes manifest |
+| **Capability Pack** | A self-contained bundle of agents, standards, templates, and commands for a technology domain | Not an NPM package or Maven artifact |
+| **Blueprint** | An agent-generator template that produces project-specific agents | Not a Terraform blueprint |
+| **Governance Profile** | One of: basic / standard / regulated / enterprise — determines mandatory review gates | Not an IAM role or security profile |
+| **Knowledge Repository** | The `knowledge/` directory — accumulated organizational learnings | Not a Git repository |
+| **Outbox Event** | A domain event stored in the `outbox_events` table for reliable async delivery | Not an email outbox |
+| **ADR** | Architecture Decision Record — a document capturing a significant technical decision | Not an Architectural Design Review (that's an ARB review) |
+| **ARB** | Architecture Review Board — the formal governance body for enterprise decisions | Not the ARB microcontroller |
+| **Bounded Context** | A DDD concept — a logical boundary within which a specific domain model applies | Not a microservice (one service can contain multiple contexts; one context can span services) |
+| **Strangler Fig** | A modernization pattern — incrementally replace legacy functionality while keeping the legacy system running | Named after a plant that grows around a host tree |
 
 ---
 
-## Ubiquitous Language Rules
+## Project-Specific Terms
 
-<!-- TODO: List terms where usage must be consistent across code, docs, and conversation -->
+> Add your domain terms here after running `/bootstrap`
 
-- Always say **Order**, never "request" or "booking"
-- Always say **Customer**, never "user" or "client" in business logic
-- Always say **Fulfilment**, never "shipping" or "dispatch" in service names
+```
+Example format:
 
-<!-- Replace with your project's actual ubiquitous language rules -->
+| **Claim** | A request by a policyholder to receive compensation for a covered loss | NOT a generic assertion or test claim |
+| **Policy** | An insurance contract between the insurer and policyholder | NOT a Spring Security policy or IAM policy |
+| **Underwriting** | The process of evaluating risk and determining premium pricing | NOT software versioning or code signing |
+```
+
+<!-- TODO: Add project-specific domain terms -->
