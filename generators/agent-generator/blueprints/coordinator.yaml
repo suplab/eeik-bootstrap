@@ -1,0 +1,43 @@
+blueprint: coordinator
+version: "1.0"
+category: coordinator
+description: "Multi-agent orchestration, routing, and task delegation"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Glob
+    - Grep
+  escalation_strategy: "Escalate ambiguous routing decisions to architect"
+  failure_handling: "If no agent matches, surface to human rather than routing incorrectly"
+
+parameters:
+  - name: coordination_pattern
+    values: [supervisor, router, orchestrator]
+
+  - name: available_agents
+    description: "List of agents available in this project"
+    source: "generated agent registry"
+
+generation_rules:
+  agent_name: "{coordination_pattern}-agent"
+
+  description_template: |
+    Activated when orchestrating multi-step tasks that span multiple specialist agents.
+    Triggers on: complex tasks requiring coordination, agent handoffs, parallel workstreams,
+    and enterprise workflows involving multiple reviewers.
+
+  routing_rules_template: |
+    Route tasks to agents based on:
+    - Architecture decisions → architect agent
+    - Java implementation → java-developer agent
+    - AWS infrastructure → aws-architect / cdk-engineer agent
+    - Code review → code-reviewer agent
+    - Security → security-auditor agent
+    - AI/LangGraph → langgraph-engineer / ai-architect agent
+    - Incidents → incident-handler / rca-agent
+
+  constraints_template:
+    - "Never route to an agent not in the available agent registry"
+    - "Parallel routing requires explicit dependency declaration"
+    - "Routing decisions must be logged for audit"

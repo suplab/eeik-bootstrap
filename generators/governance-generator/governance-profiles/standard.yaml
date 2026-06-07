@@ -1,0 +1,49 @@
+profile: standard
+description: "Standard governance for production workloads in non-regulated domains"
+applies_to:
+  project_types: [greenfield, mvp, modernization]
+  domains: [generic, retail]
+
+mandatory_reviews:
+  - review: architecture-review
+    agent: architect
+    timing: before_implementation
+    blocking: true
+    
+  - review: security-review
+    agent: security-auditor
+    timing: before_production_deploy
+    blocking: true
+
+optional_reviews:
+  - performance-review
+  - production-readiness-review
+
+generated_artifacts:
+  - artifact: CLAUDE.md
+    template: "governance-generator/templates/claude-md-standard.md"
+  - artifact: docs/architecture/solution-architecture.md
+    template: "capability-packs/architecture/templates/solution-architecture.md.template"
+  - artifact: docs/decisions/ADR-0001-architecture-style.md
+    template: "capability-packs/architecture/templates/adr-template.md"
+  - artifact: docs/review-checklist.md
+    template: "capability-packs/governance/templates/review-checklist.md.template"
+  - artifact: .github/copilot-instructions.md
+    template: "governance-generator/templates/copilot-standard.md"
+
+cicd_gates:
+  build: true
+  test: true
+  coverage_minimum: 80
+  security_scan: true        # OWASP Dependency Check
+  deploy_approval:
+    dev: false
+    staging: false
+    prod: true               # 1 approval required
+  
+slo_required: false
+
+documentation_required:
+  - README.md
+  - docs/architecture/solution-architecture.md
+  - CLAUDE.md

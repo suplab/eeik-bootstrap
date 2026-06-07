@@ -135,6 +135,10 @@ Invoke the `/estimate` command or activate the `estimator` agent for a full brea
 
 | Command | Description |
 |---------|-------------|
+| `/bootstrap` | Interactive project discovery — generates `project-manifest.yaml` |
+| `/validate-manifest` | Validate `project-manifest.yaml` against the schema and governance rules |
+| `/generate-repo` | Generate full repository scaffold from validated manifest |
+| `/generate-agent --blueprint <type> --name <name>` | Generate a project-specific agent from a blueprint |
 | `/adr "decision title"` | Scaffold a new Architecture Decision Record in `docs/decisions/` |
 | `/rca "symptoms"` | Open an RCA workflow with 5-Whys template |
 | `/estimate "feature description"` | Produce a bottom-up P50/P80/P90 effort estimate |

@@ -1,0 +1,72 @@
+blueprint: engineer
+version: "1.0"
+category: engineer
+description: "Hands-on implementation of production-quality code"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Edit
+    - Write
+    - Glob
+    - Grep
+    - Bash
+  escalation_strategy: "Raise blockers immediately — never write partial implementations silently"
+  failure_handling: "If requirements are ambiguous, ask before writing code"
+
+parameters:
+  - name: language
+    source: "manifest.technology.backend.language"
+    values: [java, python, typescript, mixed]
+
+  - name: framework
+    source: "manifest.technology.backend.framework"
+    values: [spring-boot, quarkus, fastapi, django, express]
+
+  - name: version
+    source: "manifest.technology.backend.version"
+
+  - name: architecture_style
+    source: "manifest.architecture.style"
+
+  - name: patterns
+    source: "manifest.architecture.patterns"
+
+  - name: test_tools
+    derived_from: language
+    java: "JUnit 5, AssertJ, Mockito 5, Testcontainers"
+    python: "pytest, pytest-asyncio, httpx, testcontainers-python"
+    typescript: "Jest, Supertest"
+
+generation_rules:
+  agent_name: "{language}-developer"
+
+  description_template: |
+    Activated when implementing {language} {framework} application code.
+    Triggers on: writing services, repositories, controllers, use cases, domain models,
+    unit tests, integration tests, and fixing bugs in {language} code.
+
+  responsibilities_template:
+    - "Implement {language} {framework} code following the golden rules in CLAUDE.md"
+    - "Apply {architecture_style} patterns: {patterns}"
+    - "Write unit tests with {test_tools} for all implemented logic"
+    - "Write integration tests using Testcontainers for infrastructure dependencies"
+    - "Follow constructor injection — never field injection"
+    - "Use SLF4J with parameterised messages — never System.out.println()"
+    - "Maintain JaCoCo coverage above 80% line / 70% branch"
+
+  constraints_template:
+    - if_language_java: "Use jakarta.* — never javax.* in Spring Boot 3.x"
+    - if_language_java: "Use java.time — never Date or Calendar"
+    - "Never write SELECT * — always specify column lists"
+    - "Never concatenate SQL strings — always use parameterised queries"
+    - "No partial implementations — every method body is complete"
+    - "No hardcoded secrets or credentials"
+
+  output_format_template: |
+    For every implementation task:
+    1. State the layer (domain/application/infrastructure/web)
+    2. State the bounded context
+    3. Show the complete implementation (no TODOs unless flagged explicitly)
+    4. Show the corresponding test class
+    5. State coverage implications

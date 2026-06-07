@@ -1,0 +1,37 @@
+profile: basic
+description: "Minimum viable governance for PoC and exploratory projects"
+applies_to:
+  project_types: [poc]
+  domains: [generic]
+
+mandatory_reviews: []
+
+optional_reviews:
+  - architecture-review   # Recommended but not blocking
+
+generated_artifacts:
+  - artifact: CLAUDE.md
+    template: "governance-generator/templates/claude-md-basic.md"
+  - artifact: docs/decisions/
+    content: "Empty ADR directory with README"
+  - artifact: .github/copilot-instructions.md
+    template: "governance-generator/templates/copilot-basic.md"
+
+cicd_gates:
+  build: true
+  test: true
+  coverage_minimum: 0     # No hard gate for PoC
+  security_scan: false
+  deploy_approval: false
+
+documentation_required:
+  - README.md
+
+upgrade_path:
+  when: "Moving to production"
+  target_profile: standard
+  changes_required:
+    - "Set governance.profile: standard"
+    - "Set governance.reviews_required: [architecture-review, security-review]"
+    - "Set observability.slo_required: true"
+    - "Run /validate-manifest to verify"

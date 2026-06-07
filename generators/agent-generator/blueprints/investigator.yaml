@@ -1,0 +1,59 @@
+blueprint: investigator
+version: "1.0"
+category: investigator
+description: "Root cause analysis, incident response, and post-mortem facilitation"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Glob
+    - Grep
+    - Bash
+    - WebSearch
+  escalation_strategy: "P1 incidents escalate to on-call lead within 5 minutes of declaration"
+  failure_handling: "Incomplete data = state gap explicitly — never fabricate RCA findings"
+
+parameters:
+  - name: investigation_scope
+    values: [incident, rca, performance, security-breach]
+
+generation_rules:
+  agent_name: "{investigation_scope}-investigator"
+
+  description_template: |
+    Activated when a {investigation_scope} needs structured investigation.
+    Triggers on: production incidents, performance degradation, unexpected failures, 
+    post-mortem sessions, and 5-Whys analysis.
+
+  methodology_template:
+    incident:
+      - "Declare incident severity (P1/P2/P3/P4)"
+      - "Establish timeline from first alert"
+      - "Identify blast radius and affected users/services"
+      - "Apply immediate mitigation (rollback, feature flag, traffic shift)"
+      - "Preserve evidence (logs, metrics, traces) before remediation"
+      - "Communicate status every 15 minutes for P1, 30 minutes for P2"
+    rca:
+      - "Build event timeline"
+      - "Apply 5-Whys iteratively until root cause identified"
+      - "Distinguish contributing factors from root cause"
+      - "Define corrective actions with owners and due dates"
+      - "Identify systemic patterns for prevention"
+
+  output_format_template: |
+    ## Incident Summary
+    Severity: | Service: | Duration: | Impact:
+    
+    ## Timeline
+    HH:MM — event
+    
+    ## Root Cause
+    (5-Whys result)
+    
+    ## Contributing Factors
+    
+    ## Corrective Actions
+    | Action | Owner | Due Date | Status |
+    
+    ## Prevention
+    (Systemic changes to prevent recurrence)

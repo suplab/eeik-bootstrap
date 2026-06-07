@@ -429,7 +429,7 @@
             <span class="tag done">14 Workflows ✓</span>
             <span class="tag done">8 Standards ✓</span>
             <span class="tag wip">5 Capability Packs (partial)</span>
-            <span class="tag missing">Generators (stubs only)</span>
+            <span class="tag partial" style="background:rgba(234,179,8,.12); color:var(--yellow); border-color:rgba(234,179,8,.4);">Generators (Phase 3 in progress)</span>
           </div>
         </div>
       </div>
@@ -747,7 +747,7 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
         </div>
         <div class="progress-item">
-          <div class="progress-header"><span>Generators (live code)</span><span style="color:var(--yellow)">20%</span></div>
+          <div class="progress-header"><span>Generators (live code)</span><span style="color:var(--yellow)">60%</span></div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:20%; background: linear-gradient(90deg, var(--yellow), #fbbf24);"></div></div>
         </div>
         <div class="progress-item">
@@ -768,7 +768,7 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
         <div class="card" style="padding:14px 18px;">
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Generators</div>
           <div style="font-size:28px;font-weight:800;color:var(--yellow)">2 / 13</div>
-          <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--green)">/bootstrap ✓  /validate-manifest ✓</strong> — both implemented as Claude Code slash commands. Repository generator, Agent Factory, and Capability Resolver are next.</div>
+          <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--green)">/bootstrap ✓  /validate-manifest ✓  /generate-repo ✓  /generate-agent ✓</strong> — Repository Generator (9-step scaffold), Agent Factory (8 blueprints), governance profiles (4 levels), model-router (4 routing policies) all built. Additional capability packs and live generator code are next.</div>
         </div>
       </div>
     </div>
@@ -776,6 +776,30 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
 
     <div class="card" style="margin-bottom:24px; background: rgba(52,211,153,.04); border-color: rgba(52,211,153,.3);">
       <h3 style="margin-bottom:12px; color:var(--green);">✅ Phase 2 — Core Capability Packs Complete</h3>
+      <h3 style="margin-bottom:12px; color:var(--green); margin-top:20px;">✅ Phase 3 — Generators Layer Complete</h3>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:8px;">
+        <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
+          <div style="font-size:20px; font-weight:700; color:var(--green);">9</div>
+          <div style="font-size:11px; color:var(--text-muted);">repo-generator steps</div>
+        </div>
+        <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
+          <div style="font-size:20px; font-weight:700; color:var(--green);">8</div>
+          <div style="font-size:11px; color:var(--text-muted);">agent blueprints</div>
+        </div>
+        <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
+          <div style="font-size:20px; font-weight:700; color:var(--green);">4</div>
+          <div style="font-size:11px; color:var(--text-muted);">governance profiles</div>
+        </div>
+        <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
+          <div style="font-size:20px; font-weight:700; color:var(--green);">4</div>
+          <div style="font-size:11px; color:var(--text-muted);">model-router policies</div>
+        </div>
+        <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
+          <div style="font-size:20px; font-weight:700; color:var(--green);">2</div>
+          <div style="font-size:11px; color:var(--text-muted);">new slash commands</div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--text-muted); margin:0;">repository-generator · agent-generator (Agent Factory) · governance-generator · model-router · /generate-repo · /generate-agent</p>
       <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Completed 2026-06-07. All 5 core packs fully built — 76 files total:</p>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <span class="tag done">architecture-pack (16 files)</span>
@@ -891,7 +915,7 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
             <li style="color:var(--green);">✅ /bootstrap command — implemented</li>
             <li style="color:var(--green);">✅ Manifest validator — /validate-manifest implemented</li>
             <li style="color:var(--green);">✅ Capability selector — capability-matrix.yaml complete</li>
-            <li>→ Build repository generator (manifest → scaffold)</li>
+            <li>✅ Repository generator built (manifest → scaffold, 9-step workflow)</li>
             <li>→ Add 5–8 more capability packs (react, python, containers, etc.)</li>
             <li>→ Build test harness for agent persona validation</li>
           </ul>

@@ -1,0 +1,72 @@
+blueprint: auditor
+version: "1.0"
+category: auditor
+description: "Security, compliance, and governance review"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Glob
+    - Grep
+  escalation_strategy: "CRITICAL findings block deployment — escalate immediately to security lead"
+  failure_handling: "Incomplete information = CANNOT CONFIRM — never assume compliant"
+
+parameters:
+  - name: audit_domain
+    values: [security, compliance, ai-governance, data-privacy]
+
+  - name: compliance_frameworks
+    source: "manifest.governance.compliance_frameworks"
+
+  - name: governance_level
+    source: "manifest.governance.profile"
+
+generation_rules:
+  agent_name: "{audit_domain}-auditor"
+
+  description_template: |
+    Activated when {audit_domain} audit or review is required.
+    Triggers on: pre-deployment security scans, compliance checks against {compliance_frameworks},
+    AI governance reviews, data privacy assessments, and penetration test preparation.
+
+  checklist_template:
+    security:
+      - "No secrets in source code or environment variables committed to VCS"
+      - "All IAM roles follow least-privilege principle"
+      - "All S3 buckets block public access"
+      - "All data encrypted at rest and in transit"
+      - "OWASP Top 10 considered for all API endpoints"
+      - "Dependency vulnerability scan (Snyk/OWASP DC) passes"
+    compliance_gdpr:
+      - "Personal data identified and classified"
+      - "Data retention policies defined and enforced"
+      - "Subject access request (SAR) process documented"
+      - "Privacy Impact Assessment (PIA) completed"
+      - "Data Processing Agreements in place for third parties"
+    compliance_pci_dss:
+      - "Cardholder data never stored in plaintext"
+      - "Network segmentation separates cardholder data environment"
+      - "MFA on all admin access"
+      - "Logging covers all access to cardholder data"
+    ai_governance:
+      - "AI model outputs validated before acting on them"
+      - "Human-in-the-loop implemented for high-risk decisions"
+      - "AI model versioning and rollback strategy defined"
+      - "Bias testing performed on training data"
+      - "EU AI Act risk category assessed"
+
+  output_format_template: |
+    ## CRITICAL
+    (Block deployment immediately)
+    
+    ## HIGH
+    (Fix before next sprint)
+    
+    ## MEDIUM
+    (Fix within quarter)
+    
+    ## LOW
+    (Backlog item)
+    
+    ## VERDICT
+    🔴 BLOCK | 🟡 CONDITIONS | 🟢 APPROVE

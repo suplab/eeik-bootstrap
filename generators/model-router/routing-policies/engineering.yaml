@@ -1,0 +1,49 @@
+policy: engineering
+description: "Model routing for software engineering tasks"
+version: "1.0"
+
+routes:
+  - task_type: complex_implementation
+    description: "Implementing complex business logic across multiple layers"
+    model: claude-sonnet-4-6
+    rationale: "Strong code generation; cost-effective for frequent use"
+    
+  - task_type: code_review
+    description: "Reviewing pull requests and code changes"
+    model: claude-sonnet-4-6
+    rationale: "Pattern recognition at scale; Sonnet handles checklist review well"
+    
+  - task_type: test_generation
+    description: "Generating unit and integration tests"
+    model: claude-sonnet-4-6
+    rationale: "Template-driven; Sonnet sufficient"
+    
+  - task_type: debugging
+    description: "Diagnosing and fixing bugs"
+    model: claude-sonnet-4-6
+    rationale: "Strong reasoning; most bugs solvable without Opus"
+    
+  - task_type: complex_debugging
+    description: "Multi-service, distributed system debugging"
+    model: claude-opus-4-6
+    rationale: "Cross-system reasoning across large context windows"
+    
+  - task_type: code_classification
+    description: "Classifying code quality, detecting patterns, tagging issues"
+    model: claude-haiku-4-5
+    rationale: "High-throughput classification; Haiku optimal"
+    
+  - task_type: comment_generation
+    description: "Generating Javadoc or docstrings"
+    model: claude-haiku-4-5
+    rationale: "Templated, repetitive; Haiku fast and cheap"
+    
+  - task_type: sql_generation
+    description: "Generating SQL queries and migrations"
+    model: claude-sonnet-4-6
+    rationale: "Structured generation with constraint awareness"
+    
+  - task_type: cdk_implementation
+    description: "Writing AWS CDK TypeScript stacks"
+    model: claude-sonnet-4-6
+    rationale: "Strong CDK pattern recognition; Sonnet sufficient"

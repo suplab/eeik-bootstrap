@@ -1,0 +1,34 @@
+policy: governance
+description: "Model routing for governance, compliance, and review tasks"
+version: "1.0"
+
+routes:
+  - task_type: security_review
+    description: "OWASP Top 10 review, secret scanning, vulnerability assessment"
+    model: claude-sonnet-4-6
+    rationale: "Checklist-driven; Sonnet accurate for security pattern detection"
+    
+  - task_type: compliance_assessment
+    description: "GDPR, PCI-DSS, HIPAA compliance review"
+    model: claude-opus-4-6
+    rationale: "Regulatory nuance requires deep reasoning; high-stakes output"
+    
+  - task_type: ai_governance_review
+    description: "EU AI Act, bias assessment, AI risk classification"
+    model: claude-opus-4-6
+    rationale: "Emerging regulatory landscape; complex reasoning required"
+    
+  - task_type: production_readiness_review
+    description: "PRR checklist — observability, DR, operations"
+    model: claude-sonnet-4-6
+    rationale: "Structured checklist; Sonnet efficient"
+    
+  - task_type: risk_scoring
+    description: "Scoring items in the risk register (Likelihood × Impact)"
+    model: claude-haiku-4-5
+    rationale: "Simple scoring formula; Haiku fast and sufficient"
+    
+  - task_type: policy_generation
+    description: "Generating governance policy documents"
+    model: claude-sonnet-4-6
+    rationale: "Structured writing; Sonnet quality appropriate"

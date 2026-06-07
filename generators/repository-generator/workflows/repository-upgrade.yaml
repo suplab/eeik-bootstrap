@@ -1,0 +1,44 @@
+name: repository-upgrade
+description: Upgrade an existing repository when the manifest changes
+
+trigger: "/upgrade-repo"
+
+inputs:
+  - name: manifest_path
+    default: "project-manifest.yaml"
+  - name: diff_from
+    description: "Previous manifest version (for diff calculation)"
+
+steps:
+  - id: diff-manifests
+    name: "Diff Manifest Versions"
+    agent: architect
+    description: "Identify what changed between previous and current manifest"
+    outputs:
+      - added_fields: list
+      - changed_fields: list
+      - removed_fields: list
+
+  - id: resolve-impact
+    name: "Resolve Change Impact"
+    agent: architect
+    description: "Determine which generated artifacts need updating"
+    inputs:
+      - added_fields
+      - changed_fields
+    outputs:
+      - artifacts_to_update: list
+      - new_packs_required: list
+
+  - id: apply-updates
+    name: "Apply Targeted Updates"
+    agent: architect
+    description: "Update only the affected artifacts — do not regenerate entire repo"
+    inputs:
+      - artifacts_to_update
+      - new_packs_required
+
+  - id: output-upgrade-report
+    name: "Output Upgrade Report"
+    agent: architect
+    description: "Summarise what was changed, what was skipped, and what needs manual review"

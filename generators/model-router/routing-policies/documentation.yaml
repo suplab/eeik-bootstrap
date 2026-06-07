@@ -1,0 +1,34 @@
+policy: documentation
+description: "Model routing for documentation generation tasks"
+version: "1.0"
+
+routes:
+  - task_type: solution_architecture_doc
+    description: "Writing full solution architecture document"
+    model: claude-sonnet-4-6
+    rationale: "Long-form structured writing; Sonnet quality sufficient"
+    
+  - task_type: readme_generation
+    description: "Generating README files"
+    model: claude-haiku-4-5
+    rationale: "Templated output; Haiku fast and cheap"
+    
+  - task_type: api_documentation
+    description: "Generating OpenAPI specs or API reference docs"
+    model: claude-sonnet-4-6
+    rationale: "Structured + accurate; Sonnet preferred"
+    
+  - task_type: runbook_generation
+    description: "Generating operational runbooks"
+    model: claude-sonnet-4-6
+    rationale: "Operational accuracy is important; Sonnet preferred"
+    
+  - task_type: rca_report
+    description: "Writing post-incident RCA reports"
+    model: claude-sonnet-4-6
+    rationale: "Structured analysis; Sonnet handles 5-Whys well"
+    
+  - task_type: summary_generation
+    description: "Short summaries, status updates, Slack-style messages"
+    model: claude-haiku-4-5
+    rationale: "Short output; Haiku fast and cost-effective"

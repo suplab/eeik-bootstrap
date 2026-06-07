@@ -1,0 +1,41 @@
+blueprint: planner
+version: "1.0"
+category: planner
+description: "Estimation, sprint planning, delivery tracking, and risk management"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Glob
+    - Grep
+    - WebSearch
+  escalation_strategy: "Surface high-risk estimates to delivery lead before sprint commitment"
+  failure_handling: "Incomplete requirements = widen confidence interval and flag assumptions"
+
+parameters:
+  - name: planning_domain
+    values: [estimation, tracking, risk, delivery]
+
+  - name: delivery_model
+    source: "manifest.delivery.model"
+
+  - name: methodology
+    source: "manifest.delivery.methodology"
+
+generation_rules:
+  agent_name: "{planning_domain}-planner"
+
+  description_template: |
+    Activated when estimation, planning, or delivery tracking is needed.
+    Triggers on: sprint planning, feature estimation, delivery risk assessment,
+    capacity planning, and roadmap prioritisation.
+
+  estimation_formula_template: |
+    Estimation Formula:
+    Human Days = Σ Raw Hours ÷ 6.4
+    (6.4 = 8 hours × 80% efficiency factor)
+
+    Confidence ranges:
+    - P50 (Likely)       × 1.0  — Sprint planning baseline
+    - P80 (Conservative) × 1.3  — Sprint commitment
+    - P90 (Pessimistic)  × 1.6  — Release planning buffer

@@ -1,17 +1,109 @@
 name: repository-generation
+description: End-to-end workflow for generating a project repository from a manifest
+
+trigger: "/generate-repo"
+
+inputs:
+  - name: manifest_path
+    default: "project-manifest.yaml"
+    description: "Path to the validated project manifest"
 
 steps:
+  - id: validate-preconditions
+    name: "Validate Pre-conditions"
+    agent: architect
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Pre-Conditions"
+    outputs:
+      - manifest_valid: boolean
+      - manifest_content: object
+    on_failure: halt
 
-  - validate-manifest
+  - id: resolve-dependencies
+    name: "Resolve Capability Pack Dependencies"
+    agent: architect
+    prompt: "generators/repository-generator/prompts/dependency-resolution.md"
+    inputs:
+      - manifest_content
+    outputs:
+      - resolved_packs: list
+      - assembly_order: list
+      - skipped_packs: list
+    on_failure: halt
 
-  - resolve-capabilities
+  - id: generate-structure
+    name: "Generate Directory Structure"
+    agent: architect
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-3"
+    inputs:
+      - manifest_content
+      - resolved_packs
+    outputs:
+      - directory_tree: string
+    on_failure: halt
 
-  - resolve-dependencies
+  - id: apply-tech-overlay
+    name: "Apply Technology Overlay"
+    agent: java-architect  # or python-architect based on manifest
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-4"
+    inputs:
+      - manifest_content
+      - directory_tree
+    condition: "technology.backend.language in [java, python]"
+    outputs:
+      - skeleton_files: list
 
-  - select-templates
+  - id: apply-ai-overlay
+    name: "Apply AI/Agentic Overlay"
+    agent: ai-architect
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-5"
+    inputs:
+      - manifest_content
+      - directory_tree
+    condition: "ai.enabled == true"
+    outputs:
+      - ai_files: list
 
-  - generate-assets
+  - id: generate-infrastructure
+    name: "Generate Infrastructure"
+    agent: cdk-engineer
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-6"
+    inputs:
+      - manifest_content
+    condition: "cloud.provider == aws"
+    outputs:
+      - cdk_stacks: list
+      - cicd_workflows: list
 
-  - validate-outputs
+  - id: generate-governance
+    name: "Generate Governance Assets"
+    agent: architecture-reviewer
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-7"
+    inputs:
+      - manifest_content
+    outputs:
+      - governance_artifacts: list
 
-  - publish-report
+  - id: generate-claude-config
+    name: "Generate .claude/ Configuration"
+    agent: architect
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-8"
+    inputs:
+      - manifest_content
+      - resolved_packs
+    outputs:
+      - agents_generated: list
+      - claude_md: string
+
+  - id: output-report
+    name: "Output Generation Report"
+    agent: architect
+    prompt: "generators/repository-generator/prompts/repository-generation.md#Step-9"
+    inputs:
+      - directory_tree
+      - skeleton_files
+      - cdk_stacks
+      - governance_artifacts
+      - agents_generated
+      - skipped_packs
+    outputs:
+      - generation_report: string

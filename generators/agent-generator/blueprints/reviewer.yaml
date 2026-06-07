@@ -1,0 +1,69 @@
+blueprint: reviewer
+version: "1.0"
+category: reviewer
+description: "Code and architecture quality review"
+
+fixed:
+  tools_allowed:
+    - Read
+    - Glob
+    - Grep
+  escalation_strategy: "BLOCKING findings must be surfaced as top-priority before any merge"
+  failure_handling: "If scope is unclear, clarify the PR or changeset boundaries first"
+
+parameters:
+  - name: language
+    source: "manifest.technology.backend.language"
+
+  - name: framework
+    source: "manifest.technology.backend.framework"
+
+  - name: governance_level
+    source: "manifest.governance.profile"
+
+generation_rules:
+  agent_name: "{language}-reviewer"
+
+  description_template: |
+    Activated when reviewing {language} pull requests or code changes.
+    Triggers on: PR review requests, code review, style checks, golden rule enforcement,
+    coverage analysis, and security review of {language} code.
+
+  checklist_template:
+    always:
+      - "Constructor injection only — no @Autowired on fields"
+      - "All injected fields are final"
+      - "SLF4J used — no System.out.println()"
+      - "No hardcoded secrets or credentials"
+      - "No SELECT * in any SQL"
+      - "Parameterised queries only"
+      - "No partial implementations (TODO stubs)"
+      - "Conventional Commits format"
+      - "JaCoCo coverage not decreased"
+    if_java:
+      - "jakarta.* — never javax.* in Spring Boot 3.x"
+      - "java.time — never Date or Calendar"
+      - "Optional.get() only after isPresent() or replaced with orElseThrow()"
+      - "No Thread.sleep() in tests — use Awaitility"
+    if_governance_regulated:
+      - "No PII logged in plaintext"
+      - "All external integrations have circuit breakers"
+      - "Error responses use RFC 7807 ProblemDetail"
+
+  output_format_template: |
+    Review output format:
+    
+    ## BLOCKING
+    (Issues that must be fixed before merge)
+    - [location] description
+    
+    ## MAJOR
+    (Should be fixed in this PR or immediately after)
+    - [location] description
+    
+    ## MINOR
+    (Nice to fix — can be deferred)
+    - [location] description
+    
+    ## VERDICT
+    ✅ APPROVE | ⚠️ APPROVE WITH CONDITIONS | ❌ REQUEST CHANGES

@@ -1,0 +1,63 @@
+name: agent-generation
+description: Generate project-specific agents from blueprints
+
+trigger: "/generate-agent"
+
+inputs:
+  - name: blueprint
+    required: true
+    values: [architect, engineer, reviewer, auditor, specialist, investigator, coordinator, planner]
+    
+  - name: agent_name
+    required: true
+    description: "Desired agent name in kebab-case"
+    
+  - name: specialisation
+    required: false
+    description: "Specialisation dimension (e.g. 'langgraph' for specialist blueprint)"
+
+steps:
+  - id: load-blueprint
+    name: "Load Blueprint"
+    agent: ai-architect
+    action: "Read generators/agent-generator/blueprints/{blueprint}.yaml"
+    outputs:
+      - blueprint_definition: object
+
+  - id: resolve-parameters
+    name: "Resolve Parameters from Manifest"
+    agent: ai-architect
+    prompt: "generators/agent-generator/prompts/generate-agent.md#Step-2"
+    inputs:
+      - blueprint_definition
+      - manifest: "project-manifest.yaml"
+    outputs:
+      - resolved_parameters: object
+
+  - id: render-templates
+    name: "Render Agent Templates"
+    agent: ai-architect
+    prompt: "generators/agent-generator/prompts/generate-agent.md#Step-3"
+    inputs:
+      - blueprint_definition
+      - resolved_parameters
+    outputs:
+      - rendered_content: object
+
+  - id: generate-agent-file
+    name: "Write Agent File"
+    agent: ai-architect
+    template: "generators/agent-generator/templates/agent-template.md"
+    output_path: ".claude/agents/{agent_name}.md"
+    inputs:
+      - rendered_content
+    outputs:
+      - agent_file_path: string
+
+  - id: confirm-output
+    name: "Confirm Output"
+    agent: ai-architect
+    action: "Report generated agent path and summary of capabilities"
+    inputs:
+      - agent_file_path
+      - rendered_content

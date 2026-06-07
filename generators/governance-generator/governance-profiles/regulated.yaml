@@ -1,0 +1,67 @@
+profile: regulated
+description: "Full governance for regulated domains (insurance, banking, healthcare)"
+applies_to:
+  project_types: [greenfield, mvp, modernization, enterprise-platform]
+  domains: [insurance, banking, healthcare]
+
+mandatory_reviews:
+  - review: architecture-review
+    agent: architect
+    timing: before_implementation
+    blocking: true
+    
+  - review: security-review
+    agent: security-auditor
+    timing: before_staging_deploy
+    blocking: true
+    
+  - review: compliance-review
+    agent: compliance-reviewer
+    timing: before_production_deploy
+    blocking: true
+    
+  - review: production-readiness-review
+    agent: production-readiness-reviewer
+    timing: before_production_deploy
+    blocking: true
+
+generated_artifacts:
+  - artifact: CLAUDE.md
+    template: "governance-generator/templates/claude-md-regulated.md"
+  - artifact: docs/architecture/solution-architecture.md
+    template: "capability-packs/architecture/templates/solution-architecture.md.template"
+  - artifact: docs/decisions/ADR-0001-architecture-style.md
+    template: "capability-packs/architecture/templates/adr-template.md"
+  - artifact: docs/risk-register.md
+    template: "capability-packs/governance/templates/risk-register.md.template"
+  - artifact: docs/review-checklist.md
+    template: "capability-packs/governance/templates/review-checklist.md.template"
+  - artifact: docs/compliance/
+    note: "Populated by compliance-reviewer based on compliance_frameworks"
+  - artifact: .github/copilot-instructions.md
+    template: "governance-generator/templates/copilot-regulated.md"
+
+cicd_gates:
+  build: true
+  test: true
+  coverage_minimum: 85
+  security_scan: true
+  sast: true                 # Static Application Security Testing
+  dependency_scan: true      # Snyk or OWASP Dependency Check
+  deploy_approval:
+    dev: false
+    staging: true            # 1 approval required
+    prod: true               # 2 approvals required
+    
+slo_required: true
+slo_templates:
+  - "Availability: 99.9%"
+  - "p99 latency: < 500ms"
+  - "Error rate: < 0.1%"
+
+documentation_required:
+  - README.md
+  - docs/architecture/solution-architecture.md
+  - docs/risk-register.md
+  - docs/compliance/{framework}-mapping.md
+  - CLAUDE.md

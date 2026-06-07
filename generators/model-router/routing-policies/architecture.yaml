@@ -1,5 +1,34 @@
-preferred: claude-sonnet
+policy: architecture
+description: "Model routing for architecture and design tasks"
+version: "1.0"
 
-fallback: gpt
+routes:
+  - task_type: solution_architecture
+    description: "Designing system architecture, C4 diagrams, component design"
+    model: claude-opus-4-6
+    rationale: "Complex reasoning across multiple constraints; high context load"
+    
+  - task_type: adr_creation
+    description: "Writing Architecture Decision Records"
+    model: claude-sonnet-4-6
+    rationale: "Structured writing task; Sonnet quality sufficient"
+    
+  - task_type: architecture_review
+    description: "Reviewing existing architecture for standards compliance"
+    model: claude-sonnet-4-6
+    rationale: "Checklist-driven analysis; Sonnet efficient and accurate"
+    
+  - task_type: nfr_definition
+    description: "Defining Non-Functional Requirements and SLOs"
+    model: claude-sonnet-4-6
+    rationale: "Domain knowledge task; structured output"
+    
+  - task_type: integration_design
+    description: "Designing API contracts, event schemas, integration patterns"
+    model: claude-sonnet-4-6
+    rationale: "Pattern application with structured output"
 
-complexity: high
+  - task_type: arb_submission
+    description: "Preparing formal ARB gate submissions"
+    model: claude-opus-4-6
+    rationale: "High-stakes document requiring rigorous reasoning"
