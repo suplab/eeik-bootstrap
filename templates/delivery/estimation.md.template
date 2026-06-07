@@ -1,0 +1,34 @@
+# Estimation
+
+## Scope
+
+{{scope}}
+
+---
+
+## Assumptions
+
+{{assumptions}}
+
+---
+
+## Risks
+
+{{risks}}
+
+---
+
+## Estimates
+
+| Area | Effort |
+|--------|--------|
+| Analysis | |
+| Development | |
+| Testing | |
+| Deployment | |
+
+---
+
+## Total
+
+{{total}}

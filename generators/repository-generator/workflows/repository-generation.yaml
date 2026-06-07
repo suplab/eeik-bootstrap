@@ -1,0 +1,17 @@
+name: repository-generation
+
+steps:
+
+  - validate-manifest
+
+  - resolve-capabilities
+
+  - resolve-dependencies
+
+  - select-templates
+
+  - generate-assets
+
+  - validate-outputs
+
+  - publish-report

@@ -1,683 +1,228 @@
+# Enterprise Engineering Intelligence Kit (EEIK)
+
+## Vision
+
+Create an Enterprise Engineering Operating System that transforms how organizations design, govern, modernize, build, and operate software systems.
+
+EEIK aims to become the central intelligence layer for enterprise engineering by combining:
+
+- Architecture Intelligence
+- Delivery Intelligence
+- Governance Intelligence
+- Modernization Intelligence
+- AI Engineering Intelligence
+- Organizational Knowledge Intelligence
+
+into a unified platform.
 
 ---
 
-Enterprise Engineering Intelligence Kit (EEIK)
+# Problem Statement
 
-Vision 1.0 — Enterprise Project Bootstrap Platform
+Most enterprises repeatedly recreate:
 
----
-
-Executive Summary
-
-EEIK is not an agent repository.
-
-EEIK is not a prompt repository.
-
-EEIK is not a collection of Claude configuration files.
-
-EEIK is an Enterprise Project Bootstrap Platform that assembles the right engineering intelligence for a specific project.
-
-The goal is to create:
-
-- Faster project startup
-- Consistent engineering standards
-- Reduced architectural drift
-- Reduced governance overhead
-- Reusable enterprise intelligence
-- Dynamic agent generation
-- Project-specific AI operating systems
-
-Instead of maintaining hundreds of static agents, EEIK maintains reusable capability packs and a bootstrap engine that composes a project-specific workspace.
-
----
-
-Core Philosophy
-
-Traditional Approach
-
-Repository
- ├─ 200 Agents
- ├─ 100 Prompts
- ├─ 50 Commands
- └─ 50 Hooks
-
-Problems:
-
-- High maintenance
-- Prompt drift
-- Duplicate responsibilities
-- Poor discoverability
-- Difficult governance
-
-EEIK Approach
-
-Repository
- ├─ Bootstrap Engine
- ├─ Capability Packs
- ├─ Standards Library
- ├─ Templates
- ├─ Knowledge Assets
- └─ Dynamic Agent Factory
-
-Result:
-
-New Project
-      ↓
-Bootstrap Interview
-      ↓
-Project Manifest
-      ↓
-Scaffolded Workspace
-      ↓
-Relevant Agents Only
-
----
-
-Vision
-
-Every new project starts with a guided discovery process.
-
-EEIK asks:
-
-- What are you building?
-- What technologies are involved?
-- What architecture style is required?
-- What governance is required?
-- What AI capabilities are needed?
-- Is modernization involved?
-
-Based on the answers, EEIK generates:
-
-- Repository structure
-- Claude configuration
-- GitHub configuration
-- Standards
-- Commands
-- Workflows
-- Agents
+- Engineering standards
+- Architecture templates
+- Governance processes
+- Project scaffolding
+- Agent definitions
 - Documentation
-- Governance artifacts
+- Knowledge repositories
 
-No unnecessary assets are created.
+This leads to:
 
----
-
-EEIK Components
-
-1. Bootstrap Engine
-
-Purpose:
-
-Generate a project-specific engineering workspace.
-
-Input:
-
-Project questionnaire.
-
-Output:
-
-Project manifest.
-
-Responsibilities:
-
-- Requirement discovery
-- Capability selection
-- Agent selection
-- Standards selection
-- Workflow selection
-- Repository generation
+- Inconsistent quality
+- Knowledge silos
+- Slow project startup
+- Governance drift
+- Repeated mistakes
+- Architecture inconsistency
 
 ---
 
-2. Capability Packs
+# Vision Statement
 
-Purpose:
+Engineering teams should focus on solving business problems rather than recreating engineering foundations.
 
-Reusable building blocks.
+Projects should declare:
 
-Examples:
+```text
+What they need
+```
 
-architecture
-java
-python
-aws
-frontend
-insurance
-modernization
-governance
-operations
-ai-engineering
+EEIK should determine:
 
-Each pack contains:
-
-agents
-commands
-prompts
-standards
-templates
-knowledge
-examples
+```text
+How it should be built
+```
 
 ---
 
-3. Dynamic Agent Factory
+# Strategic Objectives
 
-Purpose:
+## Accelerate Delivery
 
-Generate new agents when required.
-
-Instead of:
-
-200 predefined agents
-
-Use:
-
-Agent Generation
-
-Pattern:
-
-Need identified
-      ↓
-Agent blueprint created
-      ↓
-Prompt generated
-      ↓
-Capabilities assigned
-      ↓
-Agent registered
-
-Example:
-
-Project requires:
-
-Claims Settlement Optimization
-
-No agent exists.
-
-Agent Factory generates:
-
-claims-settlement-specialist
-
-automatically.
+Reduce project startup time from weeks to hours.
 
 ---
 
-4. Knowledge System
+## Improve Consistency
 
-Stores:
-
-Business Rules
-Events
-APIs
-ADR
-RFC
-Incidents
-Lessons Learned
-
-Purpose:
-
-Organizational intelligence accumulation.
+Apply enterprise standards automatically.
 
 ---
 
-5. Governance System
+## Increase Reuse
 
-Provides:
-
-Architecture Reviews
-Security Reviews
-AI Reviews
-Compliance Reviews
-Production Readiness Reviews
-
-Automatically enabled based on project type.
+Convert tribal knowledge into reusable capability packs.
 
 ---
 
-Repository Structure
+## Enable Governance
 
-EEIK/
-│
-├── bootstrap/
-│
-├── capability-packs/
-│
-├── domain-packs/
-│
-├── modernization-packs/
-│
-├── templates/
-│
-├── standards/
-│
-├── generators/
-│
-├── docs/
-│
-├── .github/
-│
-└── .claude/
+Shift governance left into project generation.
 
 ---
 
-Bootstrap Workflow
+## Preserve Knowledge
 
-Step 1
-
-Run:
-
-/bootstrap
+Capture architectural, operational, and delivery learnings.
 
 ---
 
-Step 2
+## Enable AI-Native Engineering
 
-Interview
-
-Questions include:
-
-Project Type
-
-Greenfield
-Modernization
-MVP
-PoC
-Enterprise Platform
-Agent Platform
-
-Domain
-
-Insurance
-Banking
-Healthcare
-Retail
-Generic
-
-Backend
-
-Java 21
-Java 25
-Python
-Node
-Mixed
-
-Frontend
-
-React
-Angular
-None
-
-Cloud
-
-AWS
-Azure
-GCP
-Hybrid
-
-Architecture
-
-Monolith
-Modular Monolith
-Microservices
-Serverless
-Event Driven
-Agentic
-
-AI Usage
-
-No AI
-RAG
-Single Agent
-Multi-Agent
-Enterprise Agent Platform
-
-Modernization
-
-No
-IBM i
-COBOL
-Mainframe
-Mixed
+Treat agents as first-class engineering assets.
 
 ---
 
-Step 3
+# Long-Term Vision
 
-Generate Manifest
-
-Example:
-
-project:
-  name: claims-modernization
-
-domain:
-  insurance
-
-backend:
-  java21
-
-frontend:
-  react
-
-cloud:
-  aws
-
-architecture:
-  microservices
-
-ai:
-  langgraph
-
-modernization:
-  ibmi
+EEIK evolves through five stages.
 
 ---
 
-Step 4
+## Stage 1
 
-Capability Selection
-
-Automatically loads:
-
-insurance-pack
-java-pack
-aws-pack
-react-pack
-modernization-pack
-ai-engineering-pack
-
----
-
-Step 5
-
-Workspace Generation
-
-Creates:
-
-.github
-.claude
-docs
-standards
-templates
-
----
-
-Skills
-
-Skills are higher-level workflows.
-
----
-
-Project Bootstrap Skill
-
-Purpose:
-
-Create project workspace.
-
----
-
-Architecture Discovery Skill
-
-Purpose:
-
-Generate architecture baseline.
-
----
-
-Modernization Discovery Skill
-
-Purpose:
-
-Analyze legacy landscape.
-
----
-
-AI Solution Discovery Skill
-
-Purpose:
-
-Generate agentic architecture.
-
----
-
-Governance Setup Skill
-
-Purpose:
-
-Generate governance artifacts.
-
----
-
-Delivery Setup Skill
-
-Purpose:
-
-Generate backlog structure.
-
----
-
-Repository Scaffolding Skill
-
-Purpose:
-
-Create project repository.
-
----
-
-Agent Factory Skill
-
-Purpose:
-
-Generate missing agents.
-
-Inputs:
-
-Need
-Responsibilities
-Inputs
-Outputs
-Constraints
-
-Output:
-
-Agent Specification
-Prompt
-Memory Strategy
-Command Set
-
----
-
-Capability Recommendation Skill
-
-Purpose:
-
-Recommend packs based on project context.
-
----
-
-Knowledge Seeder Skill
-
-Purpose:
-
-Generate initial knowledge assets.
-
----
-
-Core Agents
-
-The platform starts with a small set.
-
----
-
-Bootstrap Architect
-
-Responsible for:
-
-- Project discovery
-- Capability selection
-- Workspace generation
-
----
-
-Capability Selector
-
-Responsible for:
-
-- Pack selection
-- Dependency resolution
-
----
-
-Agent Factory
-
-Responsible for:
-
-- Agent generation
-- Agent evolution
-
----
-
-Knowledge Architect
-
-Responsible for:
-
-- Knowledge organization
-- Knowledge seeding
-
----
-
-Governance Architect
-
-Responsible for:
-
-- Governance setup
-- Review configuration
-
----
-
-Solution Architect
-
-Responsible for:
-
-- Architecture generation
-
----
-
-Delivery Architect
-
-Responsible for:
-
-- Delivery setup
-
----
-
-Modernization Architect
-
-Responsible for:
-
-- Legacy modernization planning
-
----
-
-AI Architect
-
-Responsible for:
-
-- Agentic architecture generation
-
----
-
-Adoption Strategy
-
-Phase 1
-
-Build EEIK Core
-
-Deliverables:
-
-Bootstrap Skill
-Manifest Model
-Capability Packs
-
----
-
-Phase 2
-
-Build Core Packs
-
-Architecture
-Java
-AWS
-AI Engineering
-Governance
-
----
-
-Phase 3
-
-Build Domain Packs
-
-Insurance
-Banking
-Healthcare
-
----
-
-Phase 4
-
-Build Dynamic Agent Factory
+Repository Bootstrap Platform
 
 Capabilities:
 
-Generate Agents
-Generate Commands
-Generate Prompts
-Generate Reviews
-
----
-
-Phase 5
-
-Build Repository Generator
-
-Output:
-
-Complete Project Starter Repository
-
----
-
-Success Criteria
-
-A new project should require:
-
-/bootstrap
-
-and approximately:
-
-10-15 minutes
-
-to generate:
-
-- Architecture baseline
-- Repository structure
-- Claude workspace
-- GitHub workflows
+- Bootstrap
+- Templates
 - Standards
-- Initial agents
-- Governance setup
-
-without manual engineering setup.
+- Project Generation
 
 ---
 
-End State
+## Stage 2
 
-EEIK becomes:
+Engineering Intelligence Platform
+
+Capabilities:
+
+- Architecture Intelligence
+- Delivery Intelligence
+- Governance Intelligence
+
+---
+
+## Stage 3
+
+Knowledge Platform
+
+Capabilities:
+
+- Knowledge Capture
+- Pattern Discovery
+- Organizational Learning
+
+---
+
+## Stage 4
+
+Agent Platform
+
+Capabilities:
+
+- Agent Factory
+- Agent Governance
+- Agent Marketplace
+
+---
+
+## Stage 5
 
 Enterprise Engineering Operating System
 
-rather than:
+Capabilities:
 
-Agent Collection
+- Self-improving Engineering Intelligence
+- Continuous Learning
+- Enterprise-wide Reuse
 
-The repository evolves from storing agents to generating engineering intelligence on demand.
+---
+
+# Success Metrics
+
+## Delivery
+
+- Reduced startup effort
+- Reduced architecture lead time
+- Faster onboarding
+
+---
+
+## Governance
+
+- Increased review coverage
+- Reduced compliance drift
+- Increased traceability
+
+---
+
+## Knowledge
+
+- Increased reuse
+- Reduced duplicate solutions
+- Increased adoption of proven patterns
+
+---
+
+## AI
+
+- Increased agent effectiveness
+- Reduced hallucination risk
+- Improved explainability
+
+---
+
+# Non-Goals
+
+EEIK is not:
+
+- A ticketing system
+- A source control platform
+- A CI/CD tool
+- A cloud platform
+- A replacement for engineering teams
+
+EEIK augments existing platforms and teams.
+
+---
+
+# Guiding Principles
+
+1. Manifest First
+
+2. Reuse Before Creation
+
+3. Governance By Default
+
+4. AI Native
+
+5. Knowledge Retaining
+
+6. Vendor Agnostic
+
+7. Enterprise Ready

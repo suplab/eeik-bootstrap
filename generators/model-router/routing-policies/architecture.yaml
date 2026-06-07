@@ -1,0 +1,5 @@
+preferred: claude-sonnet
+
+fallback: gpt
+
+complexity: high

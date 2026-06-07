@@ -1,0 +1,59 @@
+# Solution Architecture
+
+## Executive Summary
+
+{{summary}}
+
+---
+
+## Business Context
+
+{{business_context}}
+
+---
+
+## Scope
+
+{{scope}}
+
+---
+
+## Architecture Drivers
+
+{{drivers}}
+
+---
+
+## Constraints
+
+{{constraints}}
+
+---
+
+## Solution Overview
+
+{{solution_overview}}
+
+---
+
+## Components
+
+{{components}}
+
+---
+
+## Deployment View
+
+{{deployment_view}}
+
+---
+
+## Risks
+
+{{risks}}
+
+---
+
+## Decisions
+
+{{decisions}}

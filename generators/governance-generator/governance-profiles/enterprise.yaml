@@ -1,0 +1,15 @@
+required_reviews:
+  - architecture
+
+  - security
+
+  - ai
+
+  - production-readiness
+
+required_artifacts:
+  - adr
+
+  - architecture
+
+  - risk-register

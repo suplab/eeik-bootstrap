@@ -1,0 +1,47 @@
+# Agent Specification
+
+## Name
+
+{{agent_name}}
+
+---
+
+## Purpose
+
+{{purpose}}
+
+---
+
+## Responsibilities
+
+{{responsibilities}}
+
+---
+
+## Inputs
+
+{{inputs}}
+
+---
+
+## Outputs
+
+{{outputs}}
+
+---
+
+## Constraints
+
+{{constraints}}
+
+---
+
+## Escalation
+
+{{escalation}}
+
+---
+
+## Success Criteria
+
+{{success_criteria}}

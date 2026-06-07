@@ -1,0 +1,21 @@
+# Cloud Cost Estimate
+
+## Workload
+
+{{workload}}
+
+---
+
+## Services
+
+| Service | Quantity | Monthly Cost |
+|----------|----------|--------------|
+| ECS | | |
+| RDS | | |
+| S3 | | |
+
+---
+
+## Total
+
+{{total}}

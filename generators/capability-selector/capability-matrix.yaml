@@ -1,0 +1,13 @@
+backend:
+  java21:
+    - architecture-pack
+
+    - java-pack
+
+cloud:
+  aws:
+    - aws-pack
+
+domain:
+  insurance:
+    - insurance-pack

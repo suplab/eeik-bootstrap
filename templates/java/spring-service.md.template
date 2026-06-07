@@ -1,0 +1,12 @@
+@Service
+@RequiredArgsConstructor
+public class {{service_name}} {
+
+    private final {{dependency}} dependency;
+
+    public {{response}} execute({{request}} request) {
+
+        return dependency.process(request);
+
+    }
+}

@@ -1,0 +1,32 @@
+project:
+  name: claims-modernization
+
+project_type:
+  modernization
+
+domain:
+  insurance
+
+backend:
+  java21
+
+frontend:
+  react
+
+cloud:
+  aws
+
+architecture:
+  microservices
+
+ai:
+  multi-agent
+
+modernization:
+  ibmi
+
+governance:
+  regulated
+
+delivery:
+  enterprise-program

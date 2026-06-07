@@ -1,8 +1,107 @@
 # Enterprise Engineering Intelligence Kit (EEIK) Bootstrap
 
-A ready-to-fork workspace seed that provisions Claude Code and GitHub Copilot with rich, structured context for enterprise software development programs. Drop the files from this repository into any project and both tools become context-aware assistants that understand your technology stack, coding conventions, specialist agent roles, and operational processes — from day one.
+## AI-Native Enterprise Engineering Bootstrap Platform
 
-This is **not a runnable application**. It is a configuration and context layer for Claude Code and GitHub Copilot.
+A ready-to-fork enterprise engineering intelligence platform that provisions Claude Code and GitHub Copilot with rich, structured context for enterprise software development programs.
+
+EEIK transforms AI coding assistants from generic code generators into context-aware engineering partners that understand:
+
+- Technology stacks
+- Enterprise standards
+- Architecture governance
+- Modernization programs
+- Delivery processes
+- Cloud platforms
+- AI engineering patterns
+- Organizational knowledge
+
+Drop the configuration layers from this repository into any project and both Claude Code and GitHub Copilot become engineering assistants that understand your ecosystem from day one.
+
+EEIK is not a runnable application.
+
+It is an AI-native engineering operating system.
+
+---
+
+## Vision
+
+Most organizations repeatedly rebuild the same engineering knowledge:
+
+Coding standards
+Architecture patterns
+Governance processes
+Migration approaches
+Estimation models
+Review checklists
+Delivery workflows
+
+EEIK captures this knowledge once and makes it reusable across every project.
+
+The long-term goal is:
+
+``` text
+Project Requirements
+            ↓
+      EEIK Bootstrap
+            ↓
+ Capability Resolution
+            ↓
+ Repository Generation
+            ↓
+ Agent Generation
+            ↓
+ Governed Delivery
+            ↓
+ Knowledge Capture
+            ↓
+ Organizational Learning
+```
+Every project should leave the organization smarter than it was before the project started.
+
+---
+
+## What EEIK Provides
+EEIK combines:
+
+### AI Configuration Layer
+For:
+- Claude Code
+- GitHub Copilot
+
+### Capability Layer
+Reusable engineering intelligence:
+- Architecture
+- Java
+- Angular
+- AWS
+- AI Engineering
+- Modernization
+- Governance
+- Operations
+- Delivery
+
+### Knowledge Layer
+Reusable:
+- Reference architectures
+- ADRs
+- Patterns
+- Lessons learned
+- Incident learnings
+- Migration strategies
+
+### Governance Layer
+Built-in:
+- Architecture reviews
+- Security reviews
+- AI reviews
+- Production readiness reviews
+
+### Generation Layer
+Future platform capabilities:
+- Repository Generator
+- Agent Factory
+- Capability Resolver
+- Knowledge Platform
 
 ---
 
@@ -31,8 +130,61 @@ This is **not a runnable application**. It is a configuration and context layer 
 .editorconfig                        ← Cross-editor formatting rules
 AGENTS.md                            ← Complete agent catalogue and quick-reference
 CLAUDE.md                            ← Claude Code session brief and golden rules
-TRACKER.md                           ← Bootstrap completion tracker
+
+
 docs/                                ← Detailed specifications and implementation guides
+bootstrap/
+generators/
+capability-packs/
+knowledge/
+templates/
+schemas/
+examples/
+tests/
+VISION.md
+ROADMAP.md
+ARCHITECTURE.md
+MANIFEST-SPEC.md
+AGENT-SPEC.md
+CAPABILITY-PACK-SPEC.md
+COMMAND-SPEC.md
+WORKFLOW-SPEC.md
+MODEL-ROUTING-SPEC.md
+
+```
+
+---
+
+## EEIK Architecture
+```
+                    ┌──────────────────┐
+                    │    Bootstrap     │
+                    └─────────┬────────┘
+                              │
+                              ▼
+                 ┌────────────────────────┐
+                 │ Capability Resolution  │
+                 └─────────┬──────────────┘
+                           │
+                           ▼
+             ┌───────────────────────────────┐
+             │ Selected Capability Packs     │
+             └─────────┬─────────────────────┘
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+
+   Repository      Agent         Governance
+   Generator       Factory       Engine
+
+        ▼              ▼              ▼
+
+   Generated      Generated      Reviews
+ Repository        Agents
+
+                       ▼
+
+              Knowledge Platform
 ```
 
 ---
@@ -52,6 +204,39 @@ docs/                                ← Detailed specifications and implementat
 | **Platform** | Docker, Kubernetes, GitHub Actions, CloudWatch, X-Ray |
 
 ---
+
+## EEIK Capability Packs
+EEIK separates reusable engineering intelligence into capability packs.
+
+Examples:
+```
+capability-packs/
+├── architecture/
+├── governance/
+├── java/
+├── spring-boot/
+├── react/
+├── angular/
+├── python/
+├── aws/
+├── containers/
+├── ai-engineering/
+├── langgraph/
+├── modernization/
+├── operations/
+├── delivery/
+├── enterprise-architecture/
+└── insurance/
+```
+
+Each pack may contain:
+- Standards
+- Templates
+- Prompts
+- Workflows
+- Knowledge assets
+- Review criteria
+
 
 ## How to Adopt This Bootstrap
 
@@ -76,9 +261,15 @@ cp    CLAUDE.md       /path/to/your-project/CLAUDE.md
 Edit `.github/copilot-instructions.md`:
 - **Program Context** — describe your specific project and bounded contexts
 - **Technology Stack** — reflect your actual versions and dependency policy
+- **Architecture style** — e.g., Event-driven, Layered, Hexagonal, Microservices
+- **Delivery model** — e.g., Continuous Delivery, Incremental delivery, Staged rollout
 
-Edit `.claude/memory/project-context.md`:
-- Fill in service inventory, environment URLs, AWS account IDs, on-call contacts
+Edit `.claude/memory/project-context.md` with:
+
+- Service inventory
+- Environment details
+- Security requirements
+- Integration landscape
 
 ### 3. Adjust `applyTo` Glob Patterns
 
@@ -92,19 +283,8 @@ applyTo: "src/main/java/com/yourcompany/**/*.java"
 
 ### 4. Remove Unused Domains
 
-Delete instruction files, agents, and prompts for domains not used in your project:
+Delete instruction files, agents, and prompts for domains not used in your project.
 
-```bash
-# Example: no mainframe code
-rm .github/instructions/mainframe*.instructions.md
-rm .github/agents/modernization-expert.agent.md
-rm .github/agents/ibmi-modernization-expert.agent.md
-rm .github/prompts/tasks/modernize-*.prompt.md
-rm .github/prompts/workflows/cobol-to-java-workflow.prompt.md
-rm .claude/agents/modernization-expert.md
-rm .claude/agents/ibmi-modernization-expert.md
-rm .claude/standards/mainframe.md
-```
 
 ### 5. Verify Context is Loading
 
