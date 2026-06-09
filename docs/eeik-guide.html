@@ -287,12 +287,13 @@
 <nav>
   <div class="logo">⚙ EEIK</div>
   <a href="#what">What is it</a>
+  <a href="#explorer">Explorer</a>
   <a href="#vision">Vision</a>
   <a href="#stages">Stages</a>
   <a href="#agents">Agents</a>
   <a href="#commands">Commands</a>
   <a href="#onboarding">Onboarding</a>
-  <a href="#gaps">What's Missing</a>
+  <a href="#gaps">Progress</a>
   <a href="#next">Next Steps</a>
 </nav>
 
@@ -302,7 +303,7 @@
   <div class="hero">
     <div class="hero-badge">Enterprise Engineering Intelligence Kit</div>
     <h1>The <span>Engineering OS</span><br>for Enterprise AI-Native Teams</h1>
-    <p>Bootstrap any project — greenfield or legacy — with governed Claude Code + GitHub Copilot intelligence in under 30 minutes.</p>
+    <p>Bootstrap any project — greenfield or legacy — with governed AI engineering intelligence across 6 tools in under 30 minutes.</p>
     <div class="hero-flow">
       <div class="node accent">Project Requirements</div>
       <div class="arr">→</div>
@@ -320,14 +321,15 @@
   <section id="what">
     <div class="section-label">Overview</div>
     <h2>What is EEIK?</h2>
-    <p class="section-desc">A ready-to-fork seed repository that turns Claude Code and GitHub Copilot from generic code generators into context-aware enterprise engineering partners — from day one.</p>
+    <p class="section-desc">A ready-to-fork seed repository that gives <strong style="color:var(--text)">6 AI coding tools</strong> — Claude Code, GitHub Copilot, Kiro, Codex CLI, Cursor, and Gemini — the enterprise context they need to act as specialist engineers from day one.</p>
 
     <div class="stats-row">
-      <div class="stat"><div class="stat-value">44</div><div class="stat-label">Specialist Agents (per AI layer)</div></div>
-      <div class="stat"><div class="stat-value">13</div><div class="stat-label">Capability Packs</div></div>
+      <div class="stat"><div class="stat-value">44</div><div class="stat-label">Agents per AI tool (Claude / Copilot)</div></div>
+      <div class="stat"><div class="stat-value">18</div><div class="stat-label">Capability Packs</div></div>
       <div class="stat"><div class="stat-value">8</div><div class="stat-label">Generators</div></div>
-      <div class="stat"><div class="stat-value">19</div><div class="stat-label">Slash Commands</div></div>
-      <div class="stat"><div class="stat-value">474</div><div class="stat-label">Total Files</div></div>
+      <div class="stat"><div class="stat-value">19</div><div class="stat-label">Slash Commands (Claude Code)</div></div>
+      <div class="stat"><div class="stat-value">6</div><div class="stat-label">AI Tools Supported</div></div>
+      <div class="stat"><div class="stat-value">1,166</div><div class="stat-label">Total Files</div></div>
     </div>
 
     <div class="grid-3">
@@ -338,8 +340,8 @@
       </div>
       <div class="card">
         <div class="card-icon">📦</div>
-        <h3>13 Capability Packs</h3>
-        <p>Reusable intelligence bundles — core, architecture, java, aws, ai-engineering, governance, modernization, python, containers, delivery, insurance, banking, healthcare — each with agents, standards, templates, and workflows.</p>
+        <h3>18 Capability Packs</h3>
+        <p>Reusable intelligence bundles — core, architecture, java, aws, ai-engineering, governance, angular, react, data-engineering, python, openshift, containers, delivery, modernization, insurance, banking, belgium-insurance, healthcare — each with agents, standards, and knowledge files.</p>
       </div>
       <div class="card">
         <div class="card-icon">🏛️</div>
@@ -354,7 +356,7 @@
       <div class="card">
         <div class="card-icon">🏗️</div>
         <h3>Generation Engine</h3>
-        <p>Bootstrap interview → YAML manifest → capability selection → full repository scaffold. Generators for repositories, agents, governance, and documentation.</p>
+        <p>Bootstrap interview → YAML manifest → capability selection → full repository scaffold. 8 generators: repository, agent, adapter, capability-selector, governance, knowledge, model-router, project-analyzer.</p>
       </div>
       <div class="card">
         <div class="card-icon">🔄</div>
@@ -362,6 +364,425 @@
         <p>Every project contributes ADRs, incidents, patterns, and lessons back into EEIK. The platform gets smarter with each delivery.</p>
       </div>
     </div>
+  </section>
+
+  <!-- EXPLORER TABS -->
+  <section id="explorer">
+    <div class="section-label">Content Explorer</div>
+    <h2>What's Inside EEIK</h2>
+    <p class="section-desc">Browse the four intelligence layers — click a tab to explore agents, packs, generators, and knowledge files.</p>
+
+    <style>
+      .tabs { display: flex; gap: 4px; margin-bottom: 0; border-bottom: 2px solid var(--border); }
+      .tab-btn {
+        padding: 10px 20px; font-size: 13px; font-weight: 600;
+        background: none; border: none; color: var(--text-muted);
+        cursor: pointer; border-bottom: 2px solid transparent;
+        margin-bottom: -2px; transition: all .15s;
+      }
+      .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+      .tab-btn:hover { color: var(--text); }
+      .tab-panel { display: none; padding: 24px 0; }
+      .tab-panel.active { display: block; }
+      .explorer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+      .explorer-item {
+        background: var(--surface2); border: 1px solid var(--border);
+        border-radius: var(--radius-sm); padding: 12px 16px;
+      }
+      .explorer-item .ei-label {
+        font-size: 10px; font-weight: 700; letter-spacing: 1px;
+        text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
+      }
+      .explorer-item .ei-name {
+        font-family: 'SF Mono','Fira Code',monospace; font-size: 12px;
+        color: var(--accent3); margin-bottom: 4px;
+      }
+      .explorer-item .ei-desc { font-size: 12px; color: var(--text-muted); }
+      .pack-header {
+        display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+        padding: 14px 18px; background: var(--surface);
+        border: 1px solid var(--border); border-radius: var(--radius);
+      }
+      .pack-pill {
+        font-size: 11px; font-weight: 700; padding: 3px 10px;
+        border-radius: 12px; background: rgba(91,141,238,.12);
+        border: 1px solid rgba(91,141,238,.3); color: var(--accent);
+        cursor: pointer; transition: all .15s;
+      }
+      .pack-pill.sel { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .pack-detail { display: none; }
+      .pack-detail.active { display: block; }
+    </style>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('bootstrap')">🚀 Bootstrap</button>
+      <button class="tab-btn" onclick="showTab('capabilities')">📦 Capabilities</button>
+      <button class="tab-btn" onclick="showTab('generators')">🏗️ Generators</button>
+      <button class="tab-btn" onclick="showTab('knowledge')">🧠 Knowledge</button>
+    </div>
+
+    <!-- BOOTSTRAP TAB -->
+    <div id="tab-bootstrap" class="tab-panel active">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">The bootstrap layer provisions any new project in &lt;30 minutes. The manifest schema drives everything downstream.</p>
+      <div class="explorer-grid">
+        <div class="explorer-item">
+          <div class="ei-label">Command</div>
+          <div class="ei-name">/bootstrap</div>
+          <div class="ei-desc">Interactive discovery interview → generates project-manifest.yaml with tech stack, governance profile, and capability selections.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Command</div>
+          <div class="ei-name">/validate-manifest</div>
+          <div class="ei-desc">JSON Schema v7 + 8 governance rules (G001–G004, T001–T003, P001–P002). Strict mode for CI gates.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Command</div>
+          <div class="ei-name">/generate-repo</div>
+          <div class="ei-desc">Full 9-step repository scaffold from validated manifest — directories, Dockerfile, CI, CDK, README.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Command</div>
+          <div class="ei-name">/generate-agent</div>
+          <div class="ei-desc">Agent Factory — 8 blueprints (java-dev, java-tester, angular-dev, aws-architect, data-engineer, ml-engineer, security-reviewer, ba).</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Schema</div>
+          <div class="ei-name">project-manifest.yaml</div>
+          <div class="ei-desc">The single source of truth. Declares: stack, governance profile, capability packs, integrations, adapter flags for all 6 AI tools.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Script</div>
+          <div class="ei-name">scripts/validate_manifest.py</div>
+          <div class="ei-desc">Standalone Python validator — no AI needed. Runs in CI, checks schema + governance rules, strict mode on main branch.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Script</div>
+          <div class="ei-name">scripts/activate_packs.py</div>
+          <div class="ei-desc">Reads manifest, resolves capability packs, materialises agent + standard files into .claude/. Dry-run safe, idempotent.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Script</div>
+          <div class="ei-name">scripts/generate_adapters.py</div>
+          <div class="ei-desc">Generates all 6 AI tool adapters (Kiro steering, Codex AGENTS.md, Cursor rules, Gemini.md) from shared capability packs.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Script</div>
+          <div class="ei-name">scripts/claude_harness.py</div>
+          <div class="ei-desc">Headless Claude executor — calls claude --print with assembled prompt. Enables AI-powered generation in CI without a human present.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">CI Workflow</div>
+          <div class="ei-name">eeik-validate.yml</div>
+          <div class="ei-desc">Triggers on PRs touching manifest or capability packs. Runs schema validation (strict on main), dry-run pack activation, agent lint.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">CI Workflow</div>
+          <div class="ei-name">eeik-adapt.yml</div>
+          <div class="ei-desc">On manifest change to main — auto-generates all 6 adapter files, commits with [skip ci]. Manual dispatch with dry_run and tools inputs.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Example Manifests</div>
+          <div class="ei-name">bootstrap/examples/</div>
+          <div class="ei-desc">4 pre-built manifests: greenfield Spring Boot, Angular SPA, insurance modernisation, AWS data platform — copy and customise.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPABILITIES TAB -->
+    <div id="tab-capabilities" class="tab-panel">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">18 capability packs — tool-agnostic intelligence bundles. Each pack contains agents, standards, and knowledge. Select a pack to explore its contents.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;" id="pack-pills">
+        <span class="pack-pill sel" onclick="showPack('core')">core</span>
+        <span class="pack-pill" onclick="showPack('architecture')">architecture</span>
+        <span class="pack-pill" onclick="showPack('java')">java</span>
+        <span class="pack-pill" onclick="showPack('aws')">aws</span>
+        <span class="pack-pill" onclick="showPack('ai-engineering')">ai-engineering</span>
+        <span class="pack-pill" onclick="showPack('governance')">governance</span>
+        <span class="pack-pill" onclick="showPack('angular')">angular</span>
+        <span class="pack-pill" onclick="showPack('react')">react</span>
+        <span class="pack-pill" onclick="showPack('data-engineering')">data-engineering</span>
+        <span class="pack-pill" onclick="showPack('python')">python</span>
+        <span class="pack-pill" onclick="showPack('openshift')">openshift</span>
+        <span class="pack-pill" onclick="showPack('containers')">containers</span>
+        <span class="pack-pill" onclick="showPack('delivery')">delivery</span>
+        <span class="pack-pill" onclick="showPack('modernization')">modernization</span>
+        <span class="pack-pill" onclick="showPack('insurance')">insurance</span>
+        <span class="pack-pill" onclick="showPack('banking')">banking</span>
+        <span class="pack-pill" onclick="showPack('belgium-insurance')">belgium-insurance</span>
+        <span class="pack-pill" onclick="showPack('healthcare')">healthcare</span>
+      </div>
+
+      <div id="pack-core" class="pack-detail active">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">estimator</div><div class="ei-desc">P50/P80/P90 effort estimation using 6.4h/day formula with task-type benchmarks.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">technical-writer</div><div class="ei-desc">API docs, ADRs, runbooks, and release notes from code and context.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">business-analyst</div><div class="ei-desc">User story decomposition, acceptance criteria, BDD scenarios.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">devsecops-engineer</div><div class="ei-desc">CI/CD pipeline design, secrets management, SAST/DAST integration.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">golden-rules</div><div class="ei-desc">12 non-negotiable rules (constructor injection, no secrets, SLF4J, SELECT *, parameterised queries…)</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">security-baseline</div><div class="ei-desc">OWASP Top 10, secrets scanning, IAM least privilege, encryption at rest/transit.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">observability-baseline</div><div class="ei-desc">Structured logging (SLF4J), distributed tracing, CloudWatch dashboards, alert thresholds.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">platform-patterns</div><div class="ei-desc">Cross-cutting patterns: Outbox, Saga, CQRS, Circuit Breaker, API Gateway.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-architecture" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">enterprise-architect</div><div class="ei-desc">Domain decomposition, bounded context mapping, API strategy, technology radar.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">solution-architect</div><div class="ei-desc">Service design, integration patterns, data flow, NFR specification.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">arb-reviewer</div><div class="ei-desc">Architecture Review Board checklist — security, scalability, compliance, cost, operational readiness.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">modernization-architect</div><div class="ei-desc">Strangler Fig planning, COBOL/IBM i decomposition waves, migration roadmaps.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">architecture-principles</div><div class="ei-desc">Hexagonal architecture, DDD, 12-factor, event-driven, zero-trust.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">integration-standard</div><div class="ei-desc">REST, async messaging, schema registry, API versioning, contract testing.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">nfr-standard</div><div class="ei-desc">Availability, latency, throughput, recoverability, and compliance NFR templates.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">reference-architectures</div><div class="ei-desc">Event-driven microservices, CQRS+ES, Lambda serverless, ECS Fargate — ready-to-use reference diagrams.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-java" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">java-architect</div><div class="ei-desc">Hexagonal package structure, domain model design, Spring Boot 3 module layout.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">java-code-reviewer</div><div class="ei-desc">Golden rules enforcement, Spring patterns, SOLID, performance, security review.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">java-test-engineer</div><div class="ei-desc">JUnit 5, AssertJ, Mockito 5, Testcontainers, Pact contract testing, coverage gates.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">spring-security-engineer</div><div class="ei-desc">Spring Security 6 migration, JWT/OIDC resource server, Cognito + Keycloak, @PreAuthorize.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">java-standard</div><div class="ei-desc">Java 17/21 idioms, record types, sealed classes, pattern matching, jakarta.* only.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">spring-standard</div><div class="ei-desc">Spring Boot 3.x, constructor injection, Spring Data, transactional boundaries, actuator.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">api-standard</div><div class="ei-desc">REST API design, OpenAPI 3.1, RFC 7807 error responses, versioning, pagination.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">testcontainers-patterns</div><div class="ei-desc">@ServiceConnection (Boot 3.1+), shared static containers, Kafka IT, Localstack S3/SQS.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-aws" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">aws-solutions-architect</div><div class="ei-desc">Well-Architected review, multi-account strategy, VPC design, DR planning.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">cdk-engineer</div><div class="ei-desc">CDK TypeScript L2/L3 constructs, stack composition, cross-stack references, CDK Pipelines.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">cloud-security-reviewer</div><div class="ei-desc">IAM least privilege, SCP policy review, encryption, VPC security groups, GuardDuty.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">aws-standard</div><div class="ei-desc">ECS Fargate, RDS Aurora, ElastiCache, API Gateway — naming, tagging, security defaults.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">tagging-standard</div><div class="ei-desc">Mandatory tags: Project, Environment, Owner, CostCentre, DataClassification, ManagedBy.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">cost-standard</div><div class="ei-desc">Budget alerts, Savings Plans, rightsizing rules, CloudWatch cost dashboards.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">bedrock-rag-patterns</div><div class="ei-desc">Managed KB (OpenSearch Serverless), custom pgvector RAG, Bedrock Agents, Guardrails, cost governance.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">eventbridge-patterns</div><div class="ei-desc">Domain event bus CDK, content-based routing, Schema Registry, EventBridge Scheduler, DLQ pattern.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-ai-engineering" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">ai-architect</div><div class="ei-desc">LLM selection, RAG architecture, agentic workflow design, AI governance framework.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">rag-specialist</div><div class="ei-desc">Chunking strategy, embedding model selection, retrieval pipeline, hybrid search.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">langgraph-architect</div><div class="ei-desc">LangGraph stateful agent graphs, tool nodes, human-in-the-loop, persistence.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">prompt-engineer</div><div class="ei-desc">System prompt design, few-shot examples, chain-of-thought, evaluation dataset creation.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">agent-standard</div><div class="ei-desc">Agentic system design principles — tool use, memory, guardrails, observability.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">evaluation-standard</div><div class="ei-desc">RAGAS metrics, LangSmith tracing, CI eval gates, MLflow experiment tracking.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">prompt-standard</div><div class="ei-desc">Prompt versioning, templating, A/B testing, regression prevention.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">memory-standard</div><div class="ei-desc">Short-term (context window), long-term (vector DB), episodic (session logs), semantic compression.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">llm-evaluation-patterns</div><div class="ei-desc">RAGAS, LangSmith LLM-as-judge, CI gate YAML, MLflow model registry on pass/fail.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">vector-db-selection</div><div class="ei-desc">pgvector vs OpenSearch vs Pinecone vs Weaviate vs Chroma — decision matrix + IVFFlat/HNSW code.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">agentic-patterns</div><div class="ei-desc">Tool use, reflection, multi-agent orchestration, A2A protocol, MCP server integration.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-governance" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">architecture-reviewer</div><div class="ei-desc">ARB checklist, tech debt scoring, drift detection, decision log maintenance.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">compliance-reviewer</div><div class="ei-desc">GDPR, ISO 27001, SOC 2, PCI-DSS, DORA — evidence mapping to controls.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">production-readiness-reviewer</div><div class="ei-desc">24-point checklist: observability, runbooks, DR, capacity, security, on-call.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">governance-standard</div><div class="ei-desc">Four governance profiles (startup → regulated) with gate definitions and required artefacts.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">compliance-standard</div><div class="ei-desc">Data residency, audit logging, retention policies, PII classification, breach response.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">review-standard</div><div class="ei-desc">PR review process, code review checklist, architectural drift gates, merge criteria.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">compliance-frameworks</div><div class="ei-desc">Framework comparison table, control mapping templates, DORA timeline requirements.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-angular" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">angular-developer</div><div class="ei-desc">Angular 17+ standalone components, Signals (signal/computed/effect), NgRx Signal Store, inject() DI.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">angular-tester</div><div class="ei-desc">Jasmine/Karma, provideMockStore, signal store testing, fakeAsync, Istanbul coverage gates.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">angular-standard</div><div class="ei-desc">10 rules (A01-A10): standalone first, OnPush, takeUntilDestroyed, strict TypeScript, build budgets.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">angular-signals-migration</div><div class="ei-desc">BehaviorSubject→signal, combineLatest→computed migration table. What NOT to migrate (services stay Observable).</div></div>
+        </div>
+      </div>
+
+      <div id="pack-react" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">react-developer</div><div class="ei-desc">React 18/19, Next.js 14+ App Router, Server Components by default, TanStack Query v5, Zustand, Server Actions.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">react-standard</div><div class="ei-desc">10 rules (R01-R10): Server vs Client component decision tree, data fetching strategy, React Hook Form + Zod.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-data-engineering" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">data-engineer</div><div class="ei-desc">PySpark, AWS Glue 4.0, Kafka + Schema Registry, dbt 1.7+, Databricks DLT, Airflow TaskFlow.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">data-pipeline-standard</div><div class="ei-desc">Medallion architecture, naming conventions, dbt project structure, Kafka standards, data quality SLAs.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">lakehouse-patterns</div><div class="ei-desc">DLT pipeline, Auto Loader + Delta, CDC MERGE, schema evolution, Data Vault 2.0 reference, anti-patterns.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-python" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">fastapi-engineer</div><div class="ei-desc">FastAPI lifespan pattern, Pydantic v2, async SQLAlchemy 2.x, RFC 7807 errors, structlog.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">python-developer</div><div class="ei-desc">Python 3.11+ idioms, type hints, dataclasses, pytest, uv package management.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">python-standard</div><div class="ei-desc">10 rules: type hints mandatory, Ruff linting, no mutable defaults, pathlib over os.path.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-openshift" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">openshift-engineer</div><div class="ei-desc">OCP 4.x, SCC (the critical K8s vs OCP difference), Route vs Ingress, Tekton, ArgoCD, operator-sdk.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">openshift-standard</div><div class="ei-desc">10 rules (O01-O10): SCC decision tree, namespace strategy, image promotion (ImageStream tags), resource requirements.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-containers" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">dockerfile-standard</div><div class="ei-desc">Multi-stage builds, non-root user, minimal base images, layer caching, SBOM generation.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-delivery" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">branching-standard</div><div class="ei-desc">Trunk-based development, Conventional Commits, PR process, feature flags, release tagging.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-modernization" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">ibmi-modernization-expert</div><div class="ei-desc">IBM i RPG IV/RPGLE to Java migration, CICS→Spring Boot, DDS→JPA, strangler fig phasing.</div></div>
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">modernization-architect</div><div class="ei-desc">Decomposition strategy, wave planning, risk scoring, integration bridge design.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">cobol-standard</div><div class="ei-desc">Complexity scoring matrix, hidden dependency detection (COMMAREA, TS queues), COBOL→Java type mapping.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">strangler-fig-standard</div><div class="ei-desc">4-phase migration (proxy → partial → complete → decommission), rollback triggers, traffic splitting.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">ibmi-patterns</div><div class="ei-desc">RPG→Java mappings, DB2 for i→Aurora migration, QSYS object model, ILE service program patterns.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-insurance" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">insurance-domain-expert</div><div class="ei-desc">Policy lifecycle, claims processing, underwriting rules, reinsurance, actuarial integration.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">claims-processing-patterns</div><div class="ei-desc">Full claim lifecycle state machine, reserve management, fraud scoring, subrogation, authority matrix, SLA rules.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">insurance-domain-glossary</div><div class="ei-desc">Universal insurance terminology — policy, premium, endorsement, peril, deductible, FNOL, subrogation.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-banking" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">banking-compliance-standard</div><div class="ei-desc">PSD2, Basel III, SWIFT, AML/KYC, SEPA, MiFID II data retention, audit trail requirements.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">swift-iso20022-patterns</div><div class="ei-desc">ISO 20022 message families (pacs.008, camt.053), SEPA CT validation, SWIFT gpi tracking, JAXB unmarshalling.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">banking-domain-glossary</div><div class="ei-desc">SWIFT BIC, IBAN validation, nostro/vostro, correspondent banking, clearing, settlement terminology.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-belgium-insurance" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Agent</div><div class="ei-name">belgium-insurance-expert</div><div class="ei-desc">FSMA/NBB, Branch 21/23/26, TOB 2%, withholding tax (roerende voorheffing 30%), RC Auto bonus-malus, IDD.</div></div>
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">belgium-insurance-compliance-standard</div><div class="ei-desc">10 non-negotiable rules (B01-B10), data classification, TOB calculation, Solvency II provisions, IDD target market YAML.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">belgian-insurance-glossary</div><div class="ei-desc">Three-column glossary: NL / FR / EN — Tak 21/Branche 21/Branch 21, Datassur, NBB, FSMA terms.</div></div>
+        </div>
+      </div>
+
+      <div id="pack-healthcare" class="pack-detail">
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Standard</div><div class="ei-name">healthcare-compliance-standard</div><div class="ei-desc">GDPR, DSPT, NHS Data Security Standards, clinical safety (DCB0129/0160), retention schedules.</div></div>
+          <div class="explorer-item"><div class="ei-label">Knowledge</div><div class="ei-name">hl7-fhir-patterns</div><div class="ei-desc">FHIR R4, HAPI FHIR, Patient/Observation resources, SMART on FHIR OAuth2, SNOMED CT + LOINC coding.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENERATORS TAB -->
+    <div id="tab-generators" class="tab-panel">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">8 generators — each takes structured input and produces scaffold, code, or adapter files. Run via <span class="mono">claude_harness.py</span> in CI or interactively in Claude Code.</p>
+      <div class="explorer-grid">
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">repository-generator</div>
+          <div class="ei-desc">9-step full repo scaffold from manifest: directory layout, Dockerfile, GitHub Actions, CDK stack, README, .editorconfig, linting config.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">agent-generator</div>
+          <div class="ei-desc">Agent Factory — 8 blueprints (java-dev, java-tester, angular-dev, aws-architect, data-engineer, ml-engineer, security-reviewer, ba). Generates project-specific agent markdown files.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">adapter-generator</div>
+          <div class="ei-desc">Multi-tool adapter generation: Kiro steering docs, Codex AGENTS.md (root + 5 subdirectory templates), Cursor .mdc rules, GEMINI.md. All stamped with generation date.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">capability-selector</div>
+          <div class="ei-desc">Reads project-manifest.yaml, resolves which packs to activate (core always, java if backend=java, etc.), outputs materialised agent + standard files into .claude/.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">governance-generator</div>
+          <div class="ei-desc">4 governance profile templates (startup / standard / regulated / critical) — generates ARB criteria, security gates, compliance checklist, PR requirements.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">knowledge-generator</div>
+          <div class="ei-desc">Extracts patterns, ADRs, lessons-learned, incident reports from conversations and commits them to .claude/memory/ and docs/decisions/.</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">model-router</div>
+          <div class="ei-desc">4 routing policies (cost / quality / latency / balanced) — maps task types to model tiers (Haiku for classification, Sonnet for Q&A, Opus for compliance).</div>
+        </div>
+        <div class="explorer-item">
+          <div class="ei-label">Generator</div>
+          <div class="ei-name">project-analyzer</div>
+          <div class="ei-desc">Existing repo adoption — scans source tree, infers stack, suggests which packs to activate, drafts project-context.md. Entry point: /analyze-project.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;" class="card" style="background:rgba(91,141,238,.05);border-color:rgba(91,141,238,.3);">
+        <h3 style="margin-bottom:12px;">Codex CLI Subdirectory Templates</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">The most powerful Codex pattern: per-directory AGENTS.md files give layer-specific context. Each template lives in <span class="mono">generators/adapter-generator/codex-subdirs/</span>.</p>
+        <div class="explorer-grid">
+          <div class="explorer-item"><div class="ei-label">Template → src/main/java/AGENTS.md</div><div class="ei-name">src-main-java-AGENTS.md</div><div class="ei-desc">Hexagonal architecture package structure, 10 Java-specific rules, Outbox/Repository/Value Object patterns.</div></div>
+          <div class="explorer-item"><div class="ei-label">Template → src/test/AGENTS.md</div><div class="ei-name">src-test-AGENTS.md</div><div class="ei-desc">Test pyramid, Testcontainers (not H2), Awaitility (not Thread.sleep), AssertJ, unit/integration/contract templates.</div></div>
+          <div class="explorer-item"><div class="ei-label">Template → infrastructure/AGENTS.md</div><div class="ei-name">infrastructure-AGENTS.md</div><div class="ei-desc">CDK L2/L3, encryption by default, no * IAM, Terraform conventions, security checklist.</div></div>
+          <div class="explorer-item"><div class="ei-label">Template → src/AGENTS.md</div><div class="ei-name">python-AGENTS.md</div><div class="ei-desc">FastAPI patterns, Pydantic v2, async SQLAlchemy, pytest rules, type hints mandatory.</div></div>
+          <div class="explorer-item"><div class="ei-label">Template → pipelines/AGENTS.md</div><div class="ei-name">data-pipelines-AGENTS.md</div><div class="ei-desc">PySpark, Glue, dbt — idempotent pipelines, schema-first, DLQ required, PII tagging.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KNOWLEDGE TAB -->
+    <div id="tab-knowledge" class="tab-panel">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">18 knowledge files across all capability packs — ready-to-use reference guides with working code patterns.</p>
+      <div class="explorer-grid">
+        <div class="explorer-item"><div class="ei-label">aws</div><div class="ei-name">bedrock-rag-patterns</div><div class="ei-desc">Managed KB, custom pgvector RAG, Bedrock Agents, Guardrails. CDK + Python code ready to copy.</div></div>
+        <div class="explorer-item"><div class="ei-label">aws</div><div class="ei-name">eventbridge-patterns</div><div class="ei-desc">Domain event bus, content-based routing, Schema Registry, EventBridge Scheduler, DLQ pattern with alarms.</div></div>
+        <div class="explorer-item"><div class="ei-label">ai-engineering</div><div class="ei-name">llm-evaluation-patterns</div><div class="ei-desc">RAGAS evaluation, LangSmith LLM-as-judge, CI/CD eval gate YAML, MLflow model registration on pass.</div></div>
+        <div class="explorer-item"><div class="ei-label">ai-engineering</div><div class="ei-name">vector-db-selection</div><div class="ei-desc">Decision matrix + tree. pgvector IVFFlat, OpenSearch HNSW/faiss, hybrid search with boosting. Titan Embed v2 recommended.</div></div>
+        <div class="explorer-item"><div class="ei-label">ai-engineering</div><div class="ei-name">agentic-patterns</div><div class="ei-desc">LangGraph ReAct agent, tool use, multi-agent orchestration, A2A protocol, MCP server integration.</div></div>
+        <div class="explorer-item"><div class="ei-label">angular</div><div class="ei-name">angular-signals-migration</div><div class="ei-desc">BehaviorSubject→signal, combineLatest→computed mapping table with before/after code.</div></div>
+        <div class="explorer-item"><div class="ei-label">architecture</div><div class="ei-name">reference-architectures</div><div class="ei-desc">Event-driven microservices, CQRS+ES, Lambda serverless, ECS Fargate — C4 diagrams + CDK patterns.</div></div>
+        <div class="explorer-item"><div class="ei-label">java</div><div class="ei-name">testcontainers-patterns</div><div class="ei-desc">@ServiceConnection (Boot 3.1+), shared containers, Kafka IT, Localstack — startup time benchmarks.</div></div>
+        <div class="explorer-item"><div class="ei-label">data-engineering</div><div class="ei-name">lakehouse-patterns</div><div class="ei-desc">Medallion layers, DLT pipeline, Auto Loader + Delta, CDC MERGE, Data Vault 2.0 reference.</div></div>
+        <div class="explorer-item"><div class="ei-label">modernization</div><div class="ei-name">ibmi-patterns</div><div class="ei-desc">RPG→Java type mappings, DB2 for i→Aurora migration, ILE service program conversion.</div></div>
+        <div class="explorer-item"><div class="ei-label">insurance</div><div class="ei-name">claims-processing-patterns</div><div class="ei-desc">State machine, reserve management, fraud scoring, subrogation, authority matrix — Java aggregate code.</div></div>
+        <div class="explorer-item"><div class="ei-label">insurance</div><div class="ei-name">insurance-domain-glossary</div><div class="ei-desc">Universal insurance terminology — policy, premium, endorsement, peril, deductible, FNOL.</div></div>
+        <div class="explorer-item"><div class="ei-label">banking</div><div class="ei-name">swift-iso20022-patterns</div><div class="ei-desc">pacs.008, camt.053, SEPA CT validation, SWIFT gpi, JAXB unmarshalling, value objects.</div></div>
+        <div class="explorer-item"><div class="ei-label">banking</div><div class="ei-name">banking-domain-glossary</div><div class="ei-desc">BIC, IBAN, nostro/vostro, correspondent, clearing, settlement, reconciliation terms.</div></div>
+        <div class="explorer-item"><div class="ei-label">belgium-insurance</div><div class="ei-name">belgian-insurance-glossary</div><div class="ei-desc">NL/FR/EN three-column glossary: Tak 21/Branche 21/Branch 21, NBB, FSMA, Datassur.</div></div>
+        <div class="explorer-item"><div class="ei-label">healthcare</div><div class="ei-name">hl7-fhir-patterns</div><div class="ei-desc">FHIR R4, Patient/Observation resources, SMART on FHIR, SNOMED CT + LOINC, GDPR rules.</div></div>
+        <div class="explorer-item"><div class="ei-label">governance</div><div class="ei-name">compliance-frameworks</div><div class="ei-desc">GDPR, ISO 27001, SOC 2, PCI-DSS, DORA — comparison table + control mapping templates.</div></div>
+        <div class="explorer-item"><div class="ei-label">core</div><div class="ei-name">platform-patterns</div><div class="ei-desc">Outbox, Saga, CQRS, Circuit Breaker, API Gateway — cross-cutting patterns with Java + CDK examples.</div></div>
+      </div>
+    </div>
+
+    <script>
+      function showTab(name) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('tab-' + name).classList.add('active');
+      }
+      function showPack(name) {
+        document.querySelectorAll('#pack-pills .pack-pill').forEach(p => p.classList.remove('sel'));
+        document.querySelectorAll('.pack-detail').forEach(d => d.classList.remove('active'));
+        event.target.classList.add('sel');
+        document.getElementById('pack-' + name).classList.add('active');
+      }
+    </script>
   </section>
 
   <!-- VISION -->
@@ -389,7 +810,7 @@
           <li style="font-size:13px; color: var(--text-muted);">📚 Org knowledge baked into every session</li>
           <li style="font-size:13px; color: var(--text-muted);">⚡ Bootstrap to working repo in &lt;30 minutes</li>
           <li style="font-size:13px; color: var(--text-muted);">🛡️ Governance as code — from manifest, day one</li>
-          <li style="font-size:13px; color: var(--text-muted);">🤖 44 specialist agents, context-aware from the start</li>
+          <li style="font-size:13px; color: var(--text-muted);">🤖 44 specialist agents × 6 AI tools, context-aware from the start</li>
           <li style="font-size:13px; color: var(--text-muted);">🧬 Every project enriches the platform</li>
         </ul>
       </div>
@@ -605,8 +1026,12 @@
   <!-- COMMANDS -->
   <section id="commands">
     <div class="section-label">Slash Commands</div>
-    <h2>10 Slash Commands</h2>
-    <p class="section-desc">Type in Claude Code to activate specialist workflows instantly.</p>
+    <h2>19 Slash Commands</h2>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+      <p class="section-desc" style="margin-bottom:0;">Type in Claude Code to activate specialist workflows instantly.</p>
+      <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;background:rgba(91,141,238,.12);border:1px solid rgba(91,141,238,.3);color:var(--accent);white-space:nowrap;">Claude Code only</span>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;max-width:640px;">Slash commands live in <span class="mono">.claude/commands/</span> and are exclusive to <strong style="color:var(--text)">Claude Code</strong>. Kiro, Codex CLI, Cursor, and Gemini CLI do not support slash commands — those tools use steering docs and rules files instead. GitHub Copilot uses its own <span class="mono">/</span> commands natively.</p>
 
     <div class="card" style="padding: 0; overflow: hidden;">
       <table class="cmd-table">
@@ -614,22 +1039,41 @@
           <tr>
             <th>Command</th>
             <th>What it does</th>
-            <th>Agent Activated</th>
+            <th>Agent</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="mono">/adr "decision title"</td><td>Scaffold Architecture Decision Record in docs/decisions/</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
+          <tr><td class="mono">/bootstrap</td><td>Interactive project discovery interview → generates project-manifest.yaml</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
+          <tr><td class="mono">/validate-manifest</td><td>Validate project-manifest.yaml against JSON Schema + 8 governance rules</td><td style="color:var(--text-muted);font-size:12px;">governance</td></tr>
+          <tr><td class="mono">/generate-repo</td><td>Full repository scaffold from validated manifest (9-step workflow)</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
+          <tr><td class="mono">/generate-agent --blueprint &lt;type&gt;</td><td>Generate a project-specific agent from 8 available blueprints</td><td style="color:var(--text-muted);font-size:12px;">agent-factory</td></tr>
+          <tr><td class="mono">/analyze-project</td><td>Scan existing repo → infer stack → suggest packs → draft project-context.md</td><td style="color:var(--text-muted);font-size:12px;">project-analyzer</td></tr>
           <tr><td class="mono">/estimate "feature"</td><td>P50 / P80 / P90 effort estimate using 6.4h/day formula</td><td style="color:var(--text-muted);font-size:12px;">estimator</td></tr>
           <tr><td class="mono">/review</td><td>Full PR review: correctness, security, performance, quality</td><td style="color:var(--text-muted);font-size:12px;">code-reviewer</td></tr>
+          <tr><td class="mono">/adr "decision title"</td><td>Scaffold Architecture Decision Record in docs/decisions/</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
+          <tr><td class="mono">/create-adr "title"</td><td>Full ADR with context, decision, consequences, alternatives</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
+          <tr><td class="mono">/create-rfc "title"</td><td>RFC document for significant technical decisions requiring team review</td><td style="color:var(--text-muted);font-size:12px;">architect</td></tr>
           <tr><td class="mono">/rca "symptoms"</td><td>Blameless 5-Whys root cause analysis</td><td style="color:var(--text-muted);font-size:12px;">rca-agent</td></tr>
-          <tr><td class="mono">/incident "P1, service: X"</td><td>Declare and coordinate an incident</td><td style="color:var(--text-muted);font-size:12px;">incident-handler</td></tr>
+          <tr><td class="mono">/incident "P1, service: X"</td><td>Declare and coordinate an incident with timeline tracking</td><td style="color:var(--text-muted);font-size:12px;">incident-handler</td></tr>
+          <tr><td class="mono">/capture-incident "title"</td><td>Capture incident learnings into .claude/memory/rca-tracker.md</td><td style="color:var(--text-muted);font-size:12px;">rca-agent</td></tr>
+          <tr><td class="mono">/capture-lesson "lesson"</td><td>Capture pattern or lesson into .claude/memory/patterns.md</td><td style="color:var(--text-muted);font-size:12px;">all agents</td></tr>
           <tr><td class="mono">/security-scan [path]</td><td>OWASP Top 10 review + secrets scan</td><td style="color:var(--text-muted);font-size:12px;">security-auditor</td></tr>
-          <tr><td class="mono">/deploy-check "env: X"</td><td>Pre-deployment readiness checklist</td><td style="color:var(--text-muted);font-size:12px;">aws-deploy-helper</td></tr>
-          <tr><td class="mono">/coverage-report [path]</td><td>JaCoCo / Istanbul gap analysis + targeted test stubs</td><td style="color:var(--text-muted);font-size:12px;">jacoco-coverage-tester</td></tr>
+          <tr><td class="mono">/deploy-check "env: X"</td><td>Pre-deployment readiness checklist (24-point)</td><td style="color:var(--text-muted);font-size:12px;">aws-deploy-helper</td></tr>
+          <tr><td class="mono">/coverage-report [path]</td><td>JaCoCo / Istanbul gap analysis + targeted test stubs</td><td style="color:var(--text-muted);font-size:12px;">java-test-engineer</td></tr>
           <tr><td class="mono">/memory-update "what changed"</td><td>Update persistent .claude/memory/ context files</td><td style="color:var(--text-muted);font-size:12px;">all agents</td></tr>
           <tr><td class="mono">/sync-docs [path]</td><td>Validate API docs against OpenAPI spec</td><td style="color:var(--text-muted);font-size:12px;">technical-writer</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div style="margin-top:16px;" class="card" style="background:rgba(52,211,153,.04);border-color:rgba(52,211,153,.2);">
+      <h3 style="margin-bottom:10px;font-size:14px;">Other tools — equivalent entry points</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;font-size:13px;">
+        <div><span style="color:var(--accent);font-weight:700;">Kiro</span> — always-on steering docs in <span class="mono">.kiro/steering/</span>. Context injected automatically, no commands needed.</div>
+        <div><span style="color:var(--accent);font-weight:700;">Codex CLI</span> — <span class="mono">AGENTS.md</span> at root + per-directory files. <span class="mono">codex "task description"</span> picks up all context.</div>
+        <div><span style="color:var(--accent);font-weight:700;">Cursor</span> — <span class="mono">.cursor/rules/*.mdc</span> glob-matched per file type. Rules auto-apply, no commands.</div>
+        <div><span style="color:var(--accent);font-weight:700;">Gemini CLI</span> — <span class="mono">GEMINI.md</span> persistent context. Use <span class="mono">gemini "task"</span> with full project awareness.</div>
+      </div>
     </div>
 
     <div style="margin-top: 24px;">
@@ -654,67 +1098,137 @@
   <!-- ONBOARDING -->
   <section id="onboarding">
     <div class="section-label">Getting Started</div>
-    <h2>Adopting EEIK in 5 Steps</h2>
-    <p class="section-desc">Takes under 30 minutes for any new project. Copy the config layers, customise context, then let the agents do the rest.</p>
+    <h2>Adopting EEIK — 6 AI Tools, One Bootstrap</h2>
+    <p class="section-desc">Under 30 minutes for any project. Run the bootstrap script to generate all 6 AI tool adapters from your manifest, then activate the capability packs your project needs.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;">
+      <span class="tag done">Claude Code</span>
+      <span class="tag done">GitHub Copilot</span>
+      <span class="tag done">Kiro</span>
+      <span class="tag done">Codex CLI</span>
+      <span class="tag done">Cursor</span>
+      <span class="tag done">Gemini CLI</span>
+    </div>
 
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h3>Clone & Copy the Config Layers</h3>
-          <p>Fork or clone eeik_bootstrap. Copy .github/, .claude/, .vscode/, .editorconfig, AGENTS.md, and CLAUDE.md into your project root.</p>
+          <h3>Clone & Bootstrap</h3>
+          <p>Fork or clone eeik_bootstrap. Run <span class="mono">/bootstrap</span> in Claude Code (interactive) or copy the manifest template and fill it in manually.</p>
           <div class="code-block">git clone https://github.com/&lt;org&gt;/eeik_bootstrap.git
-cp -r eeik_bootstrap/.github/  ./your-project/.github/
-cp -r eeik_bootstrap/.claude/  ./your-project/.claude/
-cp    eeik_bootstrap/CLAUDE.md ./your-project/CLAUDE.md</div>
+cd your-project
+
+# Option A — Claude Code interactive bootstrap
+claude code
+/bootstrap
+
+# Option B — copy and customise the manifest template
+cp eeik_bootstrap/bootstrap/manifest-template.yaml project-manifest.yaml
+# Edit: project name, stack, governance profile, AI tools to enable</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-body">
-          <h3>Fill in Project Context</h3>
-          <p>Edit <span class="mono">.claude/memory/project-context.md</span> with your actual service inventory, environments, AWS resources, and auth patterns. This is what every agent reads at session start.</p>
-          <div class="code-block"># Replace all &lt;!-- TODO --&gt; placeholders:
-- Project Name, Team, Domain
-- Service inventory (name → repo → owner)
-- Environment URLs and AWS accounts
-- Auth patterns (Cognito, IAM roles, etc.)
-- Database engine, schema, ORM
-- CI/CD stages and triggers</div>
+          <h3>Validate the Manifest</h3>
+          <p>Run the standalone validator (no AI needed) to catch schema errors and governance rule violations before generating anything.</p>
+          <div class="code-block">python3 scripts/validate_manifest.py project-manifest.yaml
+# → passes 8 governance rules (G001–G004, T001–T003, P001–P002)
+# → --strict flag for CI gates on main branch
+
+# Or in Claude Code:
+/validate-manifest</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-body">
-          <h3>Update applyTo Glob Patterns</h3>
-          <p>Each file in <span class="mono">.github/instructions/</span> has an <span class="mono">applyTo</span> frontmatter. Update to match your source layout so Copilot auto-applies the right standards per file type.</p>
-          <div class="code-block">---
-applyTo: "src/main/java/com/yourcompany/**/*.java"
----</div>
+          <h3>Generate All 6 AI Tool Adapters</h3>
+          <p>One script generates adapters for every tool you enabled in the manifest. Each adapter reads from the same shared capability packs — intelligence defined once, delivered everywhere.</p>
+          <div class="code-block">python3 scripts/generate_adapters.py --apply
+# Generates (based on manifest adapter flags):
+#   .claude/          → Claude Code (44 agents, 19 commands, hooks, memory)
+#   .github/          → GitHub Copilot (44 agents, instructions, prompts)
+#   .kiro/steering/   → Kiro (always-on tech/product/structure steering docs)
+#   AGENTS.md         → Codex CLI (root context + 5 subdirectory templates)
+#   .cursor/rules/    → Cursor (glob-matched .mdc rules)
+#   GEMINI.md         → Gemini CLI (persistent project context)</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div class="step-body">
-          <h3>Remove Unused Domain Files</h3>
-          <p>Prune agents, instructions, and prompts for domains not in your stack. No mainframe? Delete mainframe agents. No Angular? Remove Angular instructions. Lean context = sharper agents.</p>
-          <div class="code-block"># Example: remove IBM i / COBOL if not applicable
-rm .github/agents/ibmi-modernization-expert.agent.md
-rm .github/instructions/ibmi.instructions.md
-rm .claude/agents/ibmi-modernization-expert.md</div>
+          <h3>Activate Capability Packs</h3>
+          <p>The pack activator resolves which packs your manifest needs and materialises agent + standard files into <span class="mono">.claude/</span>. Core pack always activates; others resolve from your tech stack.</p>
+          <div class="code-block">python3 scripts/activate_packs.py --apply
+# core always
+# java  → if technology.backend = java
+# aws   → if technology.cloud = aws
+# angular → if technology.frontend = angular
+# belgium-insurance → if capability_packs includes it
+# ... 18 packs, resolved from manifest
+
+# Or /analyze-project for existing repos:
+/analyze-project</div>
         </div>
       </div>
       <div class="step">
         <div class="step-num">5</div>
         <div class="step-body">
-          <h3>Verify & Smoke-Test</h3>
-          <p>Open a Java file, ask Copilot what standards apply. In Claude Code, run a slash command to confirm agents are loading correctly.</p>
-          <div class="code-block"># In Claude Code terminal:
+          <h3>Fill in Project Context</h3>
+          <p>Edit <span class="mono">.claude/memory/project-context.md</span> with your actual service inventory, environments, and auth patterns. This is what every agent reads at session start — the most critical step.</p>
+          <div class="code-block"># Replace all &lt;!-- TODO --&gt; placeholders:
+- Project Name, Team, Domain
+- Service inventory (name → repo → owner)
+- Environment URLs and AWS account IDs
+- Auth patterns (Cognito user pools, IAM roles)
+- Database engine, schema name, ORM
+- CI/CD pipeline stages and triggers</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Tool-Specific Tuning</h3>
+          <p>After generation, apply the few tool-specific customisations each platform needs:</p>
+          <div class="code-block"># GitHub Copilot
+# Update applyTo glob in each .github/instructions/*.md
+---
+applyTo: "src/main/java/com/yourcompany/**/*.java"
+---
+
+# Codex CLI — deploy subdirectory AGENTS.md for layer-specific context
+cp generators/adapter-generator/codex-subdirs/src-main-java-AGENTS.md  src/main/java/AGENTS.md
+cp generators/adapter-generator/codex-subdirs/src-test-AGENTS.md        src/test/AGENTS.md
+cp generators/adapter-generator/codex-subdirs/infrastructure-AGENTS.md  infrastructure/AGENTS.md
+
+# Kiro — hooks auto-apply; review .kiro/settings.json for project-specific paths
+
+# Cursor — .cursor/rules/*.mdc glob patterns auto-generated; verify globs match your layout</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <h3>Prune & Smoke-Test</h3>
+          <p>Remove unused domain agents/instructions to keep context sharp. Then smoke-test at least one agent in each tool you're using.</p>
+          <div class="code-block"># Remove unused domains (example: no mainframe in your project)
+rm .claude/agents/ibmi-modernization-expert.md
+rm .github/agents/ibmi-modernization-expert.agent.md
+
+# Smoke-test Claude Code:
 /estimate "implement user login endpoint with JWT"
 
-# In Copilot Chat:
-"What coding standards apply to this file?"
-"Using the @architect agent, design a payment service"</div>
+# Smoke-test GitHub Copilot Chat:
+"@architect design a payment service"
+
+# Smoke-test Codex CLI:
+codex "add OpenTelemetry tracing to the order service"
+
+# Smoke-test Kiro (auto-applies on file open — check suggestions in IDE)
+# Smoke-test Cursor (open a .java file — rules should auto-apply)
+# Smoke-test Gemini: gemini "review this service for golden rule violations"</div>
         </div>
       </div>
     </div>
@@ -722,15 +1236,18 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
     <div class="card" style="margin-top: 32px; background: rgba(91,141,238,.05); border-color: rgba(91,141,238,.3);">
       <h3 style="margin-bottom: 16px;">Pre-Production Adoption Checklist</h3>
       <ul class="checklist">
-        <li><span class="check">☐</span> <span>copilot-instructions.md customised with program context, stack, dependency policy</span></li>
-        <li><span class="check">☐</span> <span>.claude/memory/project-context.md filled in (services, environments, auth)</span></li>
-        <li><span class="check">☐</span> <span>applyTo glob patterns updated to match project source layout</span></li>
-        <li><span class="check">☐</span> <span>Unused domain files removed (no mainframe → remove mainframe agents/instructions)</span></li>
-        <li><span class="check">☐</span> <span>At least one Copilot agent invoked and responding in correct persona</span></li>
+        <li><span class="check">☐</span> <span>project-manifest.yaml created and validated (python3 scripts/validate_manifest.py --strict)</span></li>
+        <li><span class="check">☐</span> <span>.claude/ generated and project-context.md filled in (services, environments, auth)</span></li>
+        <li><span class="check">☐</span> <span>.github/ generated and applyTo glob patterns updated to match project source layout</span></li>
+        <li><span class="check">☐</span> <span>.kiro/steering/ generated; .kiro/settings.json paths verified</span></li>
+        <li><span class="check">☐</span> <span>AGENTS.md + subdirectory AGENTS.md deployed (src/main/java, src/test, infrastructure)</span></li>
+        <li><span class="check">☐</span> <span>.cursor/rules/ generated; glob patterns match your file layout</span></li>
+        <li><span class="check">☐</span> <span>GEMINI.md generated with correct project context</span></li>
+        <li><span class="check">☐</span> <span>Unused domain files removed (no mainframe → delete mainframe agents)</span></li>
         <li><span class="check">☐</span> <span>At least one Claude Code slash command tested (/estimate "hello world feature")</span></li>
-        <li><span class="check">☐</span> <span>.gitignore includes .copilot-*.log and session-log.md</span></li>
-        <li><span class="check">☐</span> <span>Recommended VS Code extensions installed (.vscode/extensions.json)</span></li>
-        <li><span class="check">☐</span> <span>Golden Rules from CLAUDE.md understood by the team</span></li>
+        <li><span class="check">☐</span> <span>At least one GitHub Copilot agent invoked (@architect or @java-developer)</span></li>
+        <li><span class="check">☐</span> <span>CI workflows (.github/workflows/eeik-validate.yml) passing on main</span></li>
+        <li><span class="check">☐</span> <span>Golden Rules from CLAUDE.md / AGENTS.md reviewed by the team</span></li>
       </ul>
     </div>
   </section>
@@ -760,44 +1277,69 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
     <div class="grid-2" style="margin-bottom: 24px;">
       <div>
         <div class="progress-item">
-          <div class="progress-header"><span>.github/ layer</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-header"><span>.claude/ layer (Claude Code)</span><span style="color:var(--green)">100%</span></div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
         </div>
         <div class="progress-item">
-          <div class="progress-header"><span>.claude/ layer</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-header"><span>.github/ layer (GitHub Copilot)</span><span style="color:var(--green)">100%</span></div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
         </div>
         <div class="progress-item">
-          <div class="progress-header"><span>Core Docs & Specs</span><span style="color:var(--green)">90%</span></div>
+          <div class="progress-header"><span>.kiro/ steering (Kiro)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>AGENTS.md + subdirs (Codex CLI)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>.cursor/rules/ (Cursor)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>GEMINI.md (Gemini CLI)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>Capability Packs (18 packs)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>Generators (8 generators)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>Knowledge Files (18 files)</span><span style="color:var(--green)">100%</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>CI / Code Layer (Python scripts)</span><span style="color:var(--green)">90%</span></div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:90%;"></div></div>
         </div>
         <div class="progress-item">
-          <div class="progress-header"><span>Capability Packs (content)</span><span style="color:var(--green)">100%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:100%; background: linear-gradient(90deg, var(--green), #34d399);"></div></div>
-        </div>
-        <div class="progress-item">
-          <div class="progress-header"><span>Generators (live code)</span><span style="color:var(--yellow)">60%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:20%; background: linear-gradient(90deg, var(--yellow), #fbbf24);"></div></div>
-        </div>
-        <div class="progress-item">
-          <div class="progress-header"><span>Knowledge Platform</span><span style="color:var(--red)">0%</span></div>
+          <div class="progress-header"><span>Test Suite (agent persona validation)</span><span style="color:var(--red)">0%</span></div>
           <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%; background: var(--red);"></div></div>
         </div>
         <div class="progress-item">
-          <div class="progress-header"><span>Domain Packs (Insurance, Banking…)</span><span style="color:var(--red)">0%</span></div>
-          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%; background: var(--red);"></div></div>
+          <div class="progress-header"><span>project-context.md (real project data)</span><span style="color:var(--yellow)">—</span></div>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%; background: linear-gradient(90deg, var(--yellow), #fbbf24);"></div></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;">
         <div class="card" style="padding:14px 18px;">
           <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Capability Packs</div>
-          <div style="font-size:28px;font-weight:800;color:var(--green)">5 / 17+</div>
-          <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--green)">All 5 core packs fully built</strong> — 76 files across agents, standards, templates, commands, workflows, and knowledge. 12+ domain/language packs remain on roadmap.</div>
+          <div style="font-size:28px;font-weight:800;color:var(--green)">18 / 18</div>
+          <div style="font-size:12px;color:var(--text-muted);">All 18 packs built — core, architecture, java, aws, ai-engineering, governance, angular, react, data-engineering, python, openshift, containers, delivery, modernization, insurance, banking, belgium-insurance, healthcare.</div>
         </div>
         <div class="card" style="padding:14px 18px;">
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Generators</div>
-          <div style="font-size:28px;font-weight:800;color:var(--yellow)">2 / 13</div>
-          <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--green)">/bootstrap ✓  /validate-manifest ✓  /generate-repo ✓  /generate-agent ✓</strong> — Repository Generator (9-step scaffold), Agent Factory (8 blueprints), governance profiles (4 levels), model-router (4 routing policies), Project Analyzer (existing repo adoption) all built.</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">AI Tools</div>
+          <div style="font-size:28px;font-weight:800;color:var(--green)">6 / 6</div>
+          <div style="font-size:12px;color:var(--text-muted);">All 6 tools configured: <strong style="color:var(--green)">Claude Code · GitHub Copilot · Kiro · Codex CLI · Cursor · Gemini CLI</strong>. All adapters generated from shared capability packs via generate_adapters.py.</div>
+        </div>
+        <div class="card" style="padding:14px 18px;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Knowledge</div>
+          <div style="font-size:28px;font-weight:800;color:var(--green)">18 files · 32 standards</div>
+          <div style="font-size:12px;color:var(--text-muted);">18 knowledge files with working code patterns. 32 standards files with non-negotiable rules. All ready for immediate use.</div>
         </div>
       </div>
     </div>
@@ -853,37 +1395,37 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
         </div>
       </div>
       <p style="font-size:12px; color:var(--text-muted); margin:0;">knowledge/patterns · anti-patterns · event-catalog · adr-repository · lessons-learned · incident-repository · /create-adr · /capture-lesson · /capture-incident · /memory-update · /create-rfc</p>
-      <h3 style="margin-bottom:12px; color:var(--green); margin-top:20px;">✅ Phase 5 — Full Platform Build Complete</h3>
+      <h3 style="margin-bottom:12px; color:var(--green); margin-top:20px;">✅ Phase 5 — Multi-Tool + Code Layer Complete</h3>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:10px; margin-bottom:8px;">
         <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
-          <div style="font-size:20px; font-weight:700; color:var(--green);">13</div>
+          <div style="font-size:20px; font-weight:700; color:var(--green);">18</div>
           <div style="font-size:11px; color:var(--text-muted);">capability packs</div>
         </div>
         <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
-          <div style="font-size:20px; font-weight:700; color:var(--green);">3</div>
-          <div style="font-size:11px; color:var(--text-muted);">domain packs built</div>
+          <div style="font-size:20px; font-weight:700; color:var(--green);">6</div>
+          <div style="font-size:11px; color:var(--text-muted);">AI tools configured</div>
         </div>
         <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
-          <div style="font-size:20px; font-weight:700; color:var(--green);">/analyze-project</div>
-          <div style="font-size:11px; color:var(--text-muted);">existing repo adoption</div>
+          <div style="font-size:20px; font-weight:700; color:var(--green);">5</div>
+          <div style="font-size:11px; color:var(--text-muted);">Python CLI scripts</div>
         </div>
         <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
-          <div style="font-size:20px; font-weight:700; color:var(--green);">8</div>
-          <div style="font-size:11px; color:var(--text-muted);">agent blueprints</div>
+          <div style="font-size:20px; font-weight:700; color:var(--green);">19</div>
+          <div style="font-size:11px; color:var(--text-muted);">slash commands</div>
         </div>
         <div style="background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.3); border-radius:6px; padding:10px; text-align:center;">
-          <div style="font-size:20px; font-weight:700; color:var(--green);">15+</div>
-          <div style="font-size:11px; color:var(--text-muted);">slash commands total</div>
+          <div style="font-size:20px; font-weight:700; color:var(--green);">1,166</div>
+          <div style="font-size:11px; color:var(--text-muted);">total files</div>
         </div>
       </div>
-      <p style="font-size:12px; color:var(--text-muted); margin:0;">core-pack · modernization-pack · python-pack · containers-pack · delivery-pack · insurance-pack · banking-pack · healthcare-pack · project-analyzer · /analyze-project · golden-rules · security-baseline · observability-baseline</p>
-      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Completed 2026-06-07. All 5 core packs fully built — 76 files total:</p>
+      <p style="font-size:12px; color:var(--text-muted); margin:0 0 8px;">angular · react · data-engineering · openshift · belgium-insurance · spring-security-engineer · fastapi-engineer · codex-subdirs (5 templates) · generate_adapters.py · validate_manifest.py · activate_packs.py · claude_harness.py · eeik-validate.yml · eeik-adapt.yml</p>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <span class="tag done">architecture-pack (16 files)</span>
-        <span class="tag done">java-pack (13 files)</span>
-        <span class="tag done">aws-pack (13 files)</span>
-        <span class="tag done">ai-engineering-pack (17 files)</span>
-        <span class="tag done">governance-pack (16 files)</span>
+        <span class="tag done">Claude Code ✓</span>
+        <span class="tag done">GitHub Copilot ✓</span>
+        <span class="tag done">Kiro ✓</span>
+        <span class="tag done">Codex CLI ✓</span>
+        <span class="tag done">Cursor ✓</span>
+        <span class="tag done">Gemini CLI ✓</span>
       </div>
     </div>
 
@@ -905,10 +1447,10 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
 
     <div class="gap-item" style="border-left-color: var(--green); opacity: 0.7;">
       <div class="gap-header">
-        <span class="gap-badge done" style="color:var(--green); border-color:rgba(52,211,153,.4); background:rgba(52,211,153,.08);">✅ RESOLVED — Phase 2</span>
-        <span class="gap-title">Core Capability Packs — All 5 Built (76 files)</span>
+        <span class="gap-badge done" style="color:var(--green); border-color:rgba(52,211,153,.4); background:rgba(52,211,153,.08);">✅ RESOLVED — Phase 2–5</span>
+        <span class="gap-title">All 18 Capability Packs Built + 6 AI Tools Configured</span>
       </div>
-      <p class="gap-desc">All 5 core packs fully built: <span class="mono">architecture-pack</span>, <span class="mono">java-pack</span>, <span class="mono">aws-pack</span>, <span class="mono">ai-engineering-pack</span>, <span class="mono">governance-pack</span>. Each has agents, standards, templates, commands, workflows, and knowledge files. 12+ domain/language packs (react, angular, python, insurance, banking, healthcare, ibmi, cobol…) remain on roadmap Phase 3+.</p>
+      <p class="gap-desc">All 18 packs built: core, architecture, java, aws, ai-engineering, governance, angular, react, data-engineering, python, openshift, containers, delivery, modernization, insurance, banking, belgium-insurance, healthcare. All 6 AI tool adapters generated: <span class="mono">Claude Code · GitHub Copilot · Kiro · Codex CLI · Cursor · Gemini CLI</span>. Python CLI scripts enable headless CI generation without a human present.</p>
     </div>
 
     <div class="gap-item high">
@@ -919,12 +1461,12 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
       <p class="gap-desc">The quick-start guide describes a fully working bootstrap flow, but there are no tests validating agent personas, that instructions apply correctly, that slash commands produce expected output, or that memory files load properly. Without tests, regressions are invisible.</p>
     </div>
 
-    <div class="gap-item medium">
+    <div class="gap-item" style="border-left-color: var(--green); opacity: 0.7;">
       <div class="gap-header">
-        <span class="gap-badge medium">MEDIUM</span>
-        <span class="gap-title">Knowledge Platform — Doesn't Exist Yet</span>
+        <span class="gap-badge done" style="color:var(--green); border-color:rgba(52,211,153,.4); background:rgba(52,211,153,.08);">✅ RESOLVED — Phase 5</span>
+        <span class="gap-title">Knowledge Platform — 18 Knowledge Files Built</span>
       </div>
-      <p class="gap-desc">There's no <span class="mono">knowledge/</span> directory, no ADR repository, no event catalog, no API catalog, and no incident repository. The commands <span class="mono">/create-adr</span>, <span class="mono">/create-rfc</span>, <span class="mono">/create-runbook</span> are specified in docs but not implemented.</p>
+      <p class="gap-desc">18 knowledge files built across all packs: <span class="mono">bedrock-rag-patterns · eventbridge-patterns · llm-evaluation-patterns · vector-db-selection · agentic-patterns · angular-signals-migration · lakehouse-patterns · testcontainers-patterns · ibmi-patterns · claims-processing-patterns · swift-iso20022-patterns · hl7-fhir-patterns · belgian-insurance-glossary · compliance-frameworks · platform-patterns</span> and more. /create-adr and /create-rfc commands are now implemented.</p>
     </div>
 
     <div class="gap-item medium">
@@ -943,12 +1485,12 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
       <p class="gap-desc"><span class="mono">generators/shared/schemas/</span> is referenced but empty. No JSON Schema files exist for manifest-schema.json, agent schema, capability pack schema, or command schema. Validation cannot be automated without these.</p>
     </div>
 
-    <div class="gap-item low">
+    <div class="gap-item" style="border-left-color: var(--green); opacity: 0.7;">
       <div class="gap-header">
-        <span class="gap-badge low">LOW</span>
-        <span class="gap-title">Domain Packs — Insurance, Banking, Healthcare</span>
+        <span class="gap-badge done" style="color:var(--green); border-color:rgba(52,211,153,.4); background:rgba(52,211,153,.08);">✅ RESOLVED — Phase 5</span>
+        <span class="gap-title">Domain Packs — Insurance, Banking, Healthcare, Belgium Insurance all built</span>
       </div>
-      <p class="gap-desc">Phase 7 of the roadmap calls for industry-specific domain packs. None exist yet. The bootstrap/examples/insurance-modernization.yaml is a useful example but there's no insurance capability pack backing it.</p>
+      <p class="gap-desc">All domain packs built: <span class="mono">insurance</span> (claims lifecycle, fraud, authority matrix), <span class="mono">banking</span> (SWIFT ISO 20022, SEPA, gpi), <span class="mono">healthcare</span> (FHIR R4, SMART on FHIR, SNOMED/LOINC), <span class="mono">belgium-insurance</span> (Branch 21/23/26, TOB, FSMA/NBB, RC Auto bonus-malus). Each has agents, compliance standards, and knowledge files.</p>
     </div>
   </section>
 
@@ -975,59 +1517,66 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
           </ul>
         </div>
         <div class="card" style="margin-bottom:12px; border-left: 3px solid var(--orange);">
-          <h3 style="margin-bottom:8px;">🟠 Short-term (Weeks)</h3>
+          <h3 style="margin-bottom:8px;">🟠 Short-term (Next)</h3>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--text-muted);">
-            <li style="color:var(--green);">✅ JSON schema for manifest — built (bootstrap/schemas/)</li>
-            <li style="color:var(--green);">✅ 5 core capability packs — fully built (76 files)</li>
-            <li>→ Create knowledge/ directory structure: ADRs, patterns, lessons</li>
-            <li>→ Add real decisions to decisions.md and constraints.md</li>
-            <li>→ Update docs to clearly separate current vs. future state</li>
+            <li style="color:var(--green);">✅ All 18 capability packs built</li>
+            <li style="color:var(--green);">✅ All 6 AI tool adapters generated</li>
+            <li style="color:var(--green);">✅ Python CLI scripts for headless CI generation</li>
+            <li>→ Build test harness for agent persona validation</li>
+            <li>→ Add real decisions to .claude/memory/decisions.md for your project</li>
+            <li>→ Fill in project-context.md with real project data</li>
           </ul>
         </div>
       </div>
       <div>
         <div class="card" style="margin-bottom:12px; border-left: 3px solid var(--yellow);">
-          <h3 style="margin-bottom:8px;">🟡 Medium-term (Months)</h3>
+          <h3 style="margin-bottom:8px;">🟡 Medium-term</h3>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--text-muted);">
-            <li style="color:var(--green);">✅ /bootstrap command — implemented</li>
-            <li style="color:var(--green);">✅ Manifest validator — /validate-manifest implemented</li>
-            <li style="color:var(--green);">✅ Capability selector — capability-matrix.yaml complete</li>
-            <li>✅ Repository generator built (manifest → scaffold, 9-step workflow)</li>
-            <li>→ Add 5–8 more capability packs (react, python, containers, etc.)</li>
-            <li>→ Build test harness for agent persona validation</li>
+            <li style="color:var(--green);">✅ All 18 capability packs — built</li>
+            <li style="color:var(--green);">✅ All 8 generators — built</li>
+            <li style="color:var(--green);">✅ All 6 AI tool adapters — generated</li>
+            <li style="color:var(--green);">✅ Python scripts for CI automation — built</li>
+            <li>→ Test harness: agent persona validation + regression suite</li>
+            <li>→ Pack versioning: semantic versioning for capability packs</li>
           </ul>
         </div>
         <div class="card" style="border-left: 3px solid var(--accent);">
           <h3 style="margin-bottom:8px;">🔵 Long-term (Quarters)</h3>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--text-muted);">
-            <li>→ Agent Factory: blueprint → generated project-specific agent</li>
-            <li>→ Knowledge Platform: searchable ADRs, patterns, incidents</li>
-            <li>→ Domain Packs: Insurance, Banking, Healthcare</li>
-            <li>→ Modernization Packs: IBM i, COBOL as standalone packs</li>
-            <li>→ Model Router: smart model selection per task type</li>
             <li>→ Self-improving: knowledge recommendations from usage patterns</li>
+            <li>→ EEIK marketplace: share packs across teams and organisations</li>
+            <li>→ Pack analytics: which agents are used most, quality metrics</li>
+            <li>→ Agent Swarms: multi-agent orchestration for complex workflows</li>
+            <li>→ Live adapter sync: auto-regenerate adapters on pack change</li>
+            <li>→ VS Code extension: EEIK sidebar for pack management</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="card" style="margin-top:24px; background: linear-gradient(135deg, rgba(52,211,153,.05), rgba(91,141,238,.05)); border-color: rgba(52,211,153,.3);">
-      <h3 style="margin-bottom:4px;">Recommended MVP Scope (from IMPLEMENTATION_ROADMAP.md)</h3>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">The roadmap itself recommends this MVP first — don't try to build everything at once.</p>
+      <h3 style="margin-bottom:4px;">Current Status — What's Built</h3>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Everything listed as MVP is complete. The platform is production-ready for adoption — what remains is per-project customisation and the test harness.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
-        <span class="tag done">Bootstrap Engine</span>
-        <span class="tag done">Manifest Schema</span>
-        <span class="tag done">Repository Generator</span>
-        <span class="tag done">Architecture Pack</span>
-        <span class="tag done">Java Pack</span>
-        <span class="tag done">AWS Pack</span>
-        <span class="tag done">Governance Pack</span>
-        <span class="tag done">Agent Factory</span>
+        <span class="tag done">Bootstrap Engine ✓</span>
+        <span class="tag done">Manifest Schema ✓</span>
+        <span class="tag done">18 Capability Packs ✓</span>
+        <span class="tag done">8 Generators ✓</span>
+        <span class="tag done">19 Slash Commands ✓</span>
+        <span class="tag done">Claude Code ✓</span>
+        <span class="tag done">GitHub Copilot ✓</span>
+        <span class="tag done">Kiro ✓</span>
+        <span class="tag done">Codex CLI ✓</span>
+        <span class="tag done">Cursor ✓</span>
+        <span class="tag done">Gemini CLI ✓</span>
+        <span class="tag done">CI Automation ✓</span>
+        <span class="tag done">18 Knowledge Files ✓</span>
+        <span class="tag done">32 Standards Files ✓</span>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <span class="tag missing">Knowledge Graph (later)</span>
+        <span class="tag missing">Test Harness (next)</span>
         <span class="tag missing">Agent Swarms (later)</span>
-        <span class="tag missing">Agent Marketplace (later)</span>
+        <span class="tag missing">EEIK Marketplace (later)</span>
         <span class="tag missing">Self-improving Agents (later)</span>
       </div>
     </div>
@@ -1038,7 +1587,7 @@ rm .claude/agents/ibmi-modernization-expert.md</div>
 <footer>
   <strong><span>EEIK</span> — Enterprise Engineering Intelligence Kit</strong><br>
   <span style="color:var(--text-muted);font-size:12px;margin-top:6px;display:block;">
-    Stages 1–3 Complete · Stage 4–5 In Progress · Claude Code · Kiro · Codex · Cursor · Gemini · 510 files
+    Stages 1–5 Complete · 18 Capability Packs · 6 AI Tools · 44 Agents · 19 Commands · 1,166 files · Last updated 2026-06-09
   </span>
 </footer>
 
